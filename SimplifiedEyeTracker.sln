@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplifiedEyeTracker", "SimplifiedEyeTracker.csproj", "{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Debug|x64.ActiveCfg = Debug|x64
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Debug|x64.Build.0 = Debug|x64
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Release|x64.ActiveCfg = Release|x64
+		{A5472E13-FEEE-4D7A-A5A0-1377810CEF3D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AFB3776A-0C96-4FA9-88A8-CEDF4EB01EE6}
+	EndGlobalSection
+EndGlobal
