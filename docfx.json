@@ -10,10 +10,9 @@
           "exclude": [
             "**/obj/**",
             "**/bin/**",
-            "_site/**",
-            "Properties/**",
-            "packages/**"
-          ]
+            "_site/**"
+          ],
+          "src": "SimplifiedEyeTracker.csproj"
         }
       ],
       "dest": "obj/api"
@@ -31,8 +30,8 @@
         "files": [
           "api/*.md",
           "articles/**.md",
-          //"toc.yml",
-          //"*.md"
+          "toc.yml",
+          "*.md"
         ],
         "exclude": [
           "obj/**",
