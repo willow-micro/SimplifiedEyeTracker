@@ -74,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="docfx.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -83,5 +84,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Tobii.Research.x64.1.8.0.1108\build\Tobii.Research.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Tobii.Research.x64.1.8.0.1108\build\Tobii.Research.x64.targets'))" />
+    <Error Condition="!Exists('packages\docfx.console.2.58.0\build\docfx.console.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\docfx.console.2.58.0\build\docfx.console.targets'))" />
   </Target>
+  <Import Project="packages\docfx.console.2.58.0\build\docfx.console.targets" Condition="Exists('packages\docfx.console.2.58.0\build\docfx.console.targets')" />
 </Project>

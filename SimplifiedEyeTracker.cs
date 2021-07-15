@@ -17,7 +17,7 @@ namespace SimplifiedEyeTracker
     /// <summary>
     /// Enum for specify eyetrackers at overloaded <c>EyeTracker</c> constructor.
     /// </summary>
-    /// <seealso cref="M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification, System.String)"/>
+    /// <seealso cref="SimplifiedEyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String)"/>
     public enum EyeTrackerIdentification
     {
         /// <summary>
