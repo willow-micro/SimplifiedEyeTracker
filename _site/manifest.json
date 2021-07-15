@@ -1,0 +1,200 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/taku/source/repos/SimplifiedEyeTracker",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "tEZIuiReLeNFvTj/qvr6I9gwiPF9mW1klBU5OKGMwho="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "AZ8AhBYts1lXEaHIet96dgQcO/LD4PzWaMlp6NZUUY0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "as7FI3xXqxFgDXk2os2sV15OMzSBcQ/XNIXnuD9Y3w8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "/hUstuRHAwVhStqDqbVIzZ0sBTUHFNiIyRiNr+SRbVE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.EyeTracker.SimplifiedGazeDataEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.EyeTracker.SimplifiedGazeDataEventHandler.html",
+          "hash": "fPGjYv8NnOvICqQ5V9GnpjFSckjJXkhSLDL0FyYwB6U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.EyeTracker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.EyeTracker.html",
+          "hash": "xKhtQ1lIWDV4cdOK3xAm2XSHiZ3HUyRP6WYQmgm8cFI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.EyeTrackerIdentification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.EyeTrackerIdentification.html",
+          "hash": "fnp+dbCvAxEHGfgXPM4xhiUt/6LYh2+P2jHnx+cpX3U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html",
+          "hash": "vgJgmfuGvaPb4q386u/hase7r6/5d4acNSL4y9C7ep8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.html",
+          "hash": "AmZMQ6O4TjCobt/GTQvNsUJ6GxjSI7vyk8/IlFZLgBU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "lrEtEOZsSp3HxpVdLltyW45/Pvgr9onU2+KkJ8X+4Uo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Oa9PuD4E1hvZnCkVjUgzNBX6S00Zo5YilamTERTZo54="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 4,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 5,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

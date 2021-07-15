@@ -684,7 +684,7 @@ $RECYCLE.BIN/
 
 ### DocFx ###
 .cache
-/**/_site/
+#/**/_site/
 
 # End of https://www.toptal.com/developers/gitignore/api/docfx
 

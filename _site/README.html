@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SimplifiedEyeTracker </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SimplifiedEyeTracker ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="simplifiedeyetracker">SimplifiedEyeTracker</h1>
+
+<p>This is a simple wrapper library for Tobii.Research.x64.</p>
+<h2 id="restrictions">Restrictions</h2>
+<ul>
+<li>.NET Framework Environment (Tobii.Research.x64 was built with .NET Framework 4.5)</li>
+<li>x64 Target</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Download the .nupkg and place it in any directory.</li>
+<li>In the Solution Explorer, Right click <em>ProjectName</em> and Select &quot;Manage NuGet Packages...&quot;</li>
+<li>Click the settings icon in the top right of the NuGet window, then add the directory as a new package source and click &quot;OK&quot;.</li>
+<li>Set the package source of NuGet to &quot;All&quot; or <em>DirectoryName</em> from the pull down menu on the left of the settings icon.</li>
+<li>Click &quot;Browse&quot; in the top left of the NuGet window and Search for &quot;SimplifiedEyeTracker&quot;.</li>
+<li>Select &quot;SimplifiedEyeTracker&quot; and Install it.</li>
+</ol>
+<h2 id="example">Example</h2>
+<p>This example shows a gray circle at current gaze position of the left eye in the screen using WPF Canvas. 
+(*mainCanvas is defined in the xaml file.)</p>
+<pre><code class="lang-MainWindow.xaml.cs">// Default
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
+// Additional
+using System.Diagnostics;
+using SimplifiedEyeTracker;
+
+namespace Example
+{
+   public partial class MainWindow : Window
+    {
+        private readonly EyeTracker eyeTracker;
+        private readonly Ellipse gazeCircleShape;
+        private readonly double primaryScreenWidth;
+        private readonly double primaryScreenHeight;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            this.primaryScreenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.primaryScreenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;x
+
+            this.gazeCircleShape = new Ellipse()
+            {
+                Fill = Brushes.Gray,
+                Width = 8.0, Height = 8.0
+            };
+            mainCanvas.Children.Add(this.gazeCircleShape);
+
+            try
+            {
+                this.eyeTracker = new EyeTracker();
+                Debug.Print($&quot;Model: {this.eyeTracker.GetModel()}&quot;);
+                Debug.Print($&quot;SerialNumber: {this.eyeTracker.GetSerialNumber()}&quot;);
+                this.eyeTracker.OnGazeData += this.OnGazeData;
+                this.eyeTracker.StartReceivingGazeData();
+            }
+            catch(InvalidOperationException e)
+            {
+                if (MessageBox.Show(e.Message, &quot;OK&quot;, MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                {
+                    this.Close();
+                }
+            }
+        }
+
+        private void OnGazeData(object sender, SimplifiedGazeDataEventArgs e)
+        {
+            Dispatcher.Invoke(() =&gt;
+            {
+                if (e.IsLeftValid &amp;&amp; e.LeftX &gt;= 0.0 &amp;&amp; e.LeftX &lt;= 1.0 &amp;&amp; e.LeftY &gt;= 0.0 &amp;&amp; e.LeftY &lt;= 1.0)
+                {
+                    Debug.Print($&quot;DeviceTimeStamp: {e.DeviceTimeStamp}, SystemTimeStamp: {e.SystemTimeStamp}&quot;);
+                    Debug.Print($&quot;X: {e.LeftX}, Y: {e.LeftY}&quot;);
+                    if (mainCanvas.Children.Contains(this.gazeCircleShape))
+                    {
+                        Canvas.SetLeft(this.gazeCircleShape, e.LeftX * this.primaryScreenWidth);
+                        Canvas.SetTop(this.gazeCircleShape, e.LeftY * this.primaryScreenHeight);
+                    }
+                }
+            });
+        }
+    }
+}
+</code></pre><h2 id="license">License</h2>
+<p>MIT License.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
