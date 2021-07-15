@@ -12,7 +12,7 @@
             "**/bin/**",
             "_site/**"
           ],
-          "src": "SimplifiedEyeTracker.csproj"
+          //"src": "SimplifiedEyeTracker.csproj"
         }
       ],
       "dest": "obj/api"
