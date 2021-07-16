@@ -42,7 +42,7 @@ namespace Example
             InitializeComponent();
 
             this.primaryScreenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.primaryScreenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;x
+            this.primaryScreenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
 
             this.gazeCircleShape = new Ellipse()
             {
@@ -53,7 +53,7 @@ namespace Example
 
             try
             {
-                this.eyeTracker = new EyeTracker();
+                this.eyeTracker = new EyeTracker(System.Windows.SystemParameters.PrimaryScreenWidth, System.Windows.SystemParameters.PrimaryScreenHeight);
                 Debug.Print($"Model: {this.eyeTracker.GetModel()}");
                 Debug.Print($"SerialNumber: {this.eyeTracker.GetSerialNumber()}");
                 this.eyeTracker.OnGazeData += this.OnGazeData;
@@ -72,14 +72,14 @@ namespace Example
         {
             Dispatcher.Invoke(() =>
             {
-                if (e.IsLeftValid && e.LeftX >= 0.0 && e.LeftX <= 1.0 && e.LeftY >= 0.0 && e.LeftY <= 1.0)
+                if (e.IsLeftValid && e.LeftX >= 0.0 && e.LeftX <= this.primaryScreenWidth && e.LeftY >= 0.0 && e.LeftY <= this.this.primaryScreenHeight)
                 {
                     Debug.Print($"DeviceTimeStamp: {e.DeviceTimeStamp}, SystemTimeStamp: {e.SystemTimeStamp}");
                     Debug.Print($"X: {e.LeftX}, Y: {e.LeftY}");
                     if (mainCanvas.Children.Contains(this.gazeCircleShape))
                     {
-                        Canvas.SetLeft(this.gazeCircleShape, e.LeftX * this.primaryScreenWidth);
-                        Canvas.SetTop(this.gazeCircleShape, e.LeftY * this.primaryScreenHeight);
+                        Canvas.SetLeft(this.gazeCircleShape, e.LeftX);
+                        Canvas.SetTop(this.gazeCircleShape, e.LeftY);
                     }
                 }
             });

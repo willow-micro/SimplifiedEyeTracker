@@ -104,7 +104,7 @@ namespace Example
             InitializeComponent();
 
             this.primaryScreenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.primaryScreenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;x
+            this.primaryScreenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
 
             this.gazeCircleShape = new Ellipse()
             {
@@ -115,7 +115,7 @@ namespace Example
 
             try
             {
-                this.eyeTracker = new EyeTracker();
+                this.eyeTracker = new EyeTracker(System.Windows.SystemParameters.PrimaryScreenWidth, System.Windows.SystemParameters.PrimaryScreenHeight);
                 Debug.Print($&quot;Model: {this.eyeTracker.GetModel()}&quot;);
                 Debug.Print($&quot;SerialNumber: {this.eyeTracker.GetSerialNumber()}&quot;);
                 this.eyeTracker.OnGazeData += this.OnGazeData;
@@ -134,14 +134,14 @@ namespace Example
         {
             Dispatcher.Invoke(() =&gt;
             {
-                if (e.IsLeftValid &amp;&amp; e.LeftX &gt;= 0.0 &amp;&amp; e.LeftX &lt;= 1.0 &amp;&amp; e.LeftY &gt;= 0.0 &amp;&amp; e.LeftY &lt;= 1.0)
+                if (e.IsLeftValid &amp;&amp; e.LeftX &gt;= 0.0 &amp;&amp; e.LeftX &lt;= this.primaryScreenWidth &amp;&amp; e.LeftY &gt;= 0.0 &amp;&amp; e.LeftY &lt;= this.this.primaryScreenHeight)
                 {
                     Debug.Print($&quot;DeviceTimeStamp: {e.DeviceTimeStamp}, SystemTimeStamp: {e.SystemTimeStamp}&quot;);
                     Debug.Print($&quot;X: {e.LeftX}, Y: {e.LeftY}&quot;);
                     if (mainCanvas.Children.Contains(this.gazeCircleShape))
                     {
-                        Canvas.SetLeft(this.gazeCircleShape, e.LeftX * this.primaryScreenWidth);
-                        Canvas.SetTop(this.gazeCircleShape, e.LeftY * this.primaryScreenHeight);
+                        Canvas.SetLeft(this.gazeCircleShape, e.LeftX);
+                        Canvas.SetTop(this.gazeCircleShape, e.LeftY);
                     }
                 }
             });
