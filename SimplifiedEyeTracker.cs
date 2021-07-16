@@ -1,5 +1,5 @@
 ﻿// A Simple Wrapper Library for the Tobii.Research.x64.
-// Version: 0.0.1
+// Version: 0.0.2
 // Copyright (C) 2021 T.Kawamura
 
 // Default
