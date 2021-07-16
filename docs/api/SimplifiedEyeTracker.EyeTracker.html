@@ -118,7 +118,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L114">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L125">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker__ctor_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker__ctor" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor">EyeTracker()</h4>
@@ -140,7 +140,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>Eye Tracker(s) not found</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -149,11 +150,11 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(SimplifiedEyeTracker.EyeTrackerIdentification%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L132">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L170">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker__ctor_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String)">EyeTracker(EyeTrackerIdentification, String)</h4>
-  <div class="markdown level1 summary"><p>Overloaded Constructor. Use the eye tracker which has <code>identificationString</code> for <code>identificationType</code> in the <code>Tobii.Research.EyeTrackerCollection</code>.</p>
+  <div class="markdown level1 summary"><p>Overloaded constructor. Use the eye tracker which has <code>identificationString</code> for <code>identificationType</code> in the <code>Tobii.Research.EyeTrackerCollection</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -195,7 +196,142 @@
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>Eye Tracker(s) not found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(SimplifiedEyeTracker.EyeTrackerIdentification%2CSystem.String%2CSystem.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L279">View Source</a>
+  </span>
+  <a id="SimplifiedEyeTracker_EyeTracker__ctor_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor*"></a>
+  <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double)">EyeTracker(EyeTrackerIdentification, String, Double, Double)</h4>
+  <div class="markdown level1 summary"><p>Overloaded constructor. Use the eye tracker which has <code>identificationString</code> for <code>identificationType</code> in the <code>Tobii.Research.EyeTrackerCollection</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SimplifiedEyeTracker.EyeTrackerIdentification.html">EyeTrackerIdentification</a></td>
+        <td><span class="parametername">identificationType</span></td>
+        <td><p>The way to specify the eye tracker. <a class="xref" href="SimplifiedEyeTracker.EyeTrackerIdentification.html">EyeTrackerIdentification</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">identificationString</span></td>
+        <td><p>The string for specify the eye tracker.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">screenWidth</span></td>
+        <td><p>Max value of gaze x positions in <a class="xref" href="SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_OnGazeData">OnGazeData</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">screenHeight</span></td>
+        <td><p>Max value of gaze y positions in <a class="xref" href="SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_OnGazeData">OnGazeData</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Provided screen dimension is invalid</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Eye Tracker(s) not found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(System.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L146">View Source</a>
+  </span>
+  <a id="SimplifiedEyeTracker_EyeTracker__ctor_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor*"></a>
+  <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double)">EyeTracker(Double, Double)</h4>
+  <div class="markdown level1 summary"><p>Overloaded constructor. Use the first eye tracker in the <code>Tobii.Research.EyeTrackerCollection</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EyeTracker(double screenWidth, double screenHeight)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">screenWidth</span></td>
+        <td><p>Max value of gaze x positions in <a class="xref" href="SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_OnGazeData">OnGazeData</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">screenHeight</span></td>
+        <td><p>Max value of gaze y positions in <a class="xref" href="SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_OnGazeData">OnGazeData</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Provided screen dimension is invalid</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Eye tracker(s) not found</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -206,7 +342,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetDeviceName.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetDeviceName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L227">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L388">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetDeviceName_" data-uid="SimplifiedEyeTracker.EyeTracker.GetDeviceName*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetDeviceName" data-uid="SimplifiedEyeTracker.EyeTracker.GetDeviceName">GetDeviceName()</h4>
@@ -238,7 +374,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L251">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L412">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion_" data-uid="SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion" data-uid="SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion">GetFirmwareVersion()</h4>
@@ -270,7 +406,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetModel.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetModel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L243">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L404">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetModel_" data-uid="SimplifiedEyeTracker.EyeTracker.GetModel*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetModel" data-uid="SimplifiedEyeTracker.EyeTracker.GetModel">GetModel()</h4>
@@ -302,7 +438,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetRuntimeVersion.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L259">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L420">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetRuntimeVersion_" data-uid="SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetRuntimeVersion" data-uid="SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion">GetRuntimeVersion()</h4>
@@ -334,7 +470,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetSerialNumber.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetSerialNumber%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L235">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L396">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetSerialNumber_" data-uid="SimplifiedEyeTracker.EyeTracker.GetSerialNumber*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetSerialNumber" data-uid="SimplifiedEyeTracker.EyeTracker.GetSerialNumber">GetSerialNumber()</h4>
@@ -366,7 +502,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_StartReceivingGazeData.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.StartReceivingGazeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L268">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L429">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_StartReceivingGazeData_" data-uid="SimplifiedEyeTracker.EyeTracker.StartReceivingGazeData*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_StartReceivingGazeData" data-uid="SimplifiedEyeTracker.EyeTracker.StartReceivingGazeData">StartReceivingGazeData()</h4>
@@ -388,7 +524,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>EyeTracker.OnGazeData is null</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -397,7 +534,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_StopReceivingGazeData.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.StopReceivingGazeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L283">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L444">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_StopReceivingGazeData_" data-uid="SimplifiedEyeTracker.EyeTracker.StopReceivingGazeData*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_StopReceivingGazeData" data-uid="SimplifiedEyeTracker.EyeTracker.StopReceivingGazeData">StopReceivingGazeData()</h4>
@@ -419,7 +556,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>EyeTracker.OnGazeData is null</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -430,7 +568,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/master/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_OnGazeData.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.OnGazeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L108">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/master/SimplifiedEyeTracker.cs/#L119">View Source</a>
   </span>
   <h4 id="SimplifiedEyeTracker_EyeTracker_OnGazeData" data-uid="SimplifiedEyeTracker.EyeTracker.OnGazeData">OnGazeData</h4>
   <div class="markdown level1 summary"><p>EventHandler for make gaze data available from user</p>
@@ -455,6 +593,9 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="SimplifiedEyeTracker_EyeTracker_OnGazeData_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If you specify a screen dimension in the constructor, that changes max values for gaze positions.</p>
+</div>
 </article>
           </div>
           

@@ -25,6 +25,18 @@ references:
   commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String)
   fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String)
   nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String)
+- uid: SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double)
+  name: EyeTracker(EyeTrackerIdentification, String, Double, Double)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double)
+  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String, System.Double, System.Double)
+  nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String, Double, Double)
+- uid: SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double)
+  name: EyeTracker(Double, Double)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double)
+  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(System.Double, System.Double)
+  nameWithType: EyeTracker.EyeTracker(Double, Double)
 - uid: SimplifiedEyeTracker.EyeTracker.#ctor*
   name: EyeTracker
   href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_
