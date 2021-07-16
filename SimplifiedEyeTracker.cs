@@ -57,22 +57,22 @@ namespace SimplifiedEyeTracker
         public long SystemTimeStamp;
         /// <summary>
         /// X Coordinate of the Left eye gaze in the user display area. 
-        /// <c>0.0</c> is the left edge, <c>1.0</c> is the right edge of the screen.
+        /// <c>0.0</c> is the left edge, <c>1.0</c> or <c>screenWidth</c> is the right edge of the screen.
         /// </summary>
         public double LeftX;
         /// <summary>
         /// X Coordinate of the Right eye gaze in the user display area. 
-        /// <c>0.0</c> is the left edge, <c>1.0</c> is the right edge of the screen.
+        /// <c>0.0</c> is the left edge, <c>1.0</c> or <c>screenWidth</c> is the right edge of the screen.
         /// </summary>
         public double RightX;
         /// <summary>
         /// Y Coordinate of the Left eye gaze in the user display area. 
-        /// <c>0.0</c> is the top edge, <c>1.0</c> is the bottom edge of the screen.
+        /// <c>0.0</c> is the top edge, <c>1.0</c> or <c>screenHeight</c> is the bottom edge of the screen.
         /// </summary>
         public double LeftY;
         /// <summary>
         /// Y Coordinate of the Right eye gaze in the user display area. 
-        /// <c>0.0</c> is the top edge, <c>1.0</c> is the bottom edge of the screen.
+        /// <c>0.0</c> is the top edge, <c>1.0</c> or <c>screenHeight</c> is the bottom edge of the screen.
         /// </summary>
         public double RightY;
         /// <summary>
