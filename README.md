@@ -1,5 +1,6 @@
 # SimplifiedEyeTracker
 [![CodeQL](https://github.com/willow-micro/SimplifiedEyeTracker/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/willow-micro/SimplifiedEyeTracker/actions/workflows/codeql-analysis.yml) ![.NET Framework is 4.7.2](https://img.shields.io/badge/.NET_Framework-4.7.2-blueviolet)
+
 This is a simple wrapper library for Tobii.Research.x64.
 
 ## Restrictions
