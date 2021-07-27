@@ -1,5 +1,5 @@
 ﻿// A Simple Wrapper Library for the Tobii.Research.x64.
-// Version: 0.0.2
+// Version: 0.0.3
 // Copyright (C) 2021 T.Kawamura
 
 // Default
@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 // Additional
+using System.Numerics;
 // Additional (third party)
 using Tobii.Research;
 
@@ -83,6 +84,50 @@ namespace SimplifiedEyeTracker
         /// If the Right eye is closed, it becomes false.
         /// </summary>
         public bool IsRightValid;
+        /// <summary>
+        /// [Left Eye] Gaze Vector from Gaze Origin to Gaze Point
+        /// </summary>
+        public Vector3 LeftGazeVector;
+        /// <summary>
+        /// [Right Eye] Gaze Vector from Gaze Origin to Gaze Point
+        /// </summary>
+        public Vector3 RightGazeVector;
+        /// <summary>
+        /// [Left Eye] Previous Gaze Vector from Gaze Origin to Gaze Point
+        /// </summary>
+        public Vector3 PrevLeftGazeVector;
+        /// <summary>
+        /// [Right Eye] Previous Gaze Vector from Gaze Origin to Gaze Point
+        /// </summary>
+        public Vector3 PrevRightGazeVector;
+        /// <summary>
+        /// [Left Eye] Angular displacement between previous gaze vector and latest gaze vector in degrees
+        /// </summary>
+        public Double LeftGazeAngularDisplacementInDeg;
+        /// <summary>
+        /// [Right Eye] Angular displacement between previous gaze vector and latest gaze vector in degrees
+        /// </summary>
+        public Double RightGazeAngularDisplacementInDeg;
+        /// <summary>
+        /// [Left Eye] Angular displacement between previous gaze vector and latest gaze vector in radians
+        /// </summary>
+        public Double LeftGazeAngularDisplacementInRad;
+        /// <summary>
+        /// [Right Eye] Angular displacement between previous gaze vector and latest gaze vector in radians
+        /// </summary>
+        public Double RightGazeAngularDisplacementInRad;
+        /// <summary>
+        /// Interval between previous system time stamp and latest system time stamp
+        /// </summary>
+        public int SystemTimeStampInterval;
+        /// <summary>
+        /// Angular Velocity for Left Gaze in deg/s
+        /// </summary>
+        public Double LeftGazeAngularVelocity;
+        /// <summary>
+        /// Angular Velocity for Right Gaze in deg/s
+        /// </summary>
+        public Double RightGazeAngularVelocity;
     }
 
     /// <summary>
@@ -102,6 +147,19 @@ namespace SimplifiedEyeTracker
         /// Screen Height
         /// </summary>
         private readonly double screenHeight;
+
+        /// <summary>
+        /// [Left Eye] Previous Gaze Vector (from Gaze Origin to Gaze Point)
+        /// </summary>
+        private Vector3 prevLeftGazeUCSVector = new Vector3(0.0f, 0.0f, 0.0f);
+        /// <summary>
+        /// [Right Eye] Previous Gaze Vector (from Gaze Origin to Gaze Point)
+        /// </summary>
+        private Vector3 prevRightGazeUCSVector = new Vector3(0.0f, 0.0f, 0.0f);
+        /// <summary>
+        /// Previous System Time Stamp [us]
+        /// </summary>
+        private long prevSystemTimeStamp;
 
         /// <summary>
         /// Delegate for the event <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>
@@ -460,6 +518,36 @@ namespace SimplifiedEyeTracker
         /// <param name="e">Event arguments</param>
         private void GazeDataReceived(object sender, GazeDataEventArgs e)
         {
+            bool isLeftValid = e.LeftEye.GazeOrigin.Validity == Validity.Valid && e.LeftEye.GazePoint.Validity == Validity.Valid;
+            bool isRightValid = e.RightEye.GazeOrigin.Validity == Validity.Valid && e.RightEye.GazePoint.Validity == Validity.Valid;
+
+            int systemTimeStampInterval = (int)(e.SystemTimeStamp - this.prevSystemTimeStamp);
+
+            Vector3 leftGazePointUCSVector = new Vector3(e.LeftEye.GazePoint.PositionInUserCoordinates.X, e.LeftEye.GazePoint.PositionInUserCoordinates.Y, e.LeftEye.GazePoint.PositionInUserCoordinates.Z);
+            Vector3 rightGazePointUCSVector = new Vector3(e.RightEye.GazePoint.PositionInUserCoordinates.X, e.RightEye.GazePoint.PositionInUserCoordinates.Y, e.RightEye.GazePoint.PositionInUserCoordinates.Z);
+            Vector3 leftGazeOriginUCSVector = new Vector3(e.LeftEye.GazeOrigin.PositionInUserCoordinates.X, e.LeftEye.GazeOrigin.PositionInUserCoordinates.Y, e.LeftEye.GazeOrigin.PositionInUserCoordinates.Z);
+            Vector3 rightGazeOriginUCSVector = new Vector3(e.RightEye.GazeOrigin.PositionInUserCoordinates.X, e.RightEye.GazeOrigin.PositionInUserCoordinates.Y, e.RightEye.GazeOrigin.PositionInUserCoordinates.Z);
+            Vector3 leftGazeUCSVector = Vector3.Subtract(leftGazePointUCSVector, leftGazeOriginUCSVector);
+            Vector3 rightGazeUCSVector = Vector3.Subtract(rightGazePointUCSVector, rightGazeOriginUCSVector);
+
+            Double leftCosineTheta = (Double)(Vector3.Dot(this.prevLeftGazeUCSVector, leftGazeUCSVector) / (this.prevLeftGazeUCSVector.Length() * leftGazeUCSVector.Length()));
+            Double leftThetaRad = Math.Acos(leftCosineTheta);
+            Double leftThetaDeg = leftThetaRad * 180.0 / Math.PI;
+            Double rightCosineTheta = (Double)(Vector3.Dot(this.prevRightGazeUCSVector, rightGazeUCSVector) / (this.prevRightGazeUCSVector.Length() * rightGazeUCSVector.Length()));
+            Double rightThetaRad = Math.Acos(rightCosineTheta);
+            Double rightThetaDeg = rightThetaRad * 180.0 / Math.PI;
+
+            Double leftAngularVelocity = leftThetaDeg * 1000000 / systemTimeStampInterval;
+            if (leftAngularVelocity == double.NaN)
+            {
+                isLeftValid = false;
+            }
+            Double rightAngularVelocity = rightThetaDeg * 1000000 / systemTimeStampInterval;
+            if (rightAngularVelocity == double.NaN)
+            {
+                isRightValid = false;
+            }
+
             if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
             {
                 SimplifiedGazeDataEventArgs gazeData = new SimplifiedGazeDataEventArgs()
@@ -470,8 +558,19 @@ namespace SimplifiedEyeTracker
                     RightX = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.X),
                     LeftY = Convert.ToDouble(e.LeftEye.GazePoint.PositionOnDisplayArea.Y),
                     RightY = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.Y),
-                    IsLeftValid = e.LeftEye.GazeOrigin.Validity == Validity.Valid,
-                    IsRightValid = e.RightEye.GazeOrigin.Validity == Validity.Valid
+                    IsLeftValid = isLeftValid,
+                    IsRightValid = isRightValid,
+                    LeftGazeVector = leftGazeUCSVector,
+                    RightGazeVector = rightGazeUCSVector,
+                    PrevLeftGazeVector = prevLeftGazeUCSVector,
+                    PrevRightGazeVector = prevRightGazeUCSVector,
+                    LeftGazeAngularDisplacementInDeg = leftThetaDeg,
+                    LeftGazeAngularDisplacementInRad = leftThetaRad,
+                    RightGazeAngularDisplacementInDeg = rightThetaDeg,
+                    RightGazeAngularDisplacementInRad = rightThetaRad,
+                    SystemTimeStampInterval = systemTimeStampInterval,
+                    LeftGazeAngularVelocity = leftAngularVelocity,
+                    RightGazeAngularVelocity = rightAngularVelocity
                 };
                 this.OnGazeData?.Invoke(this, gazeData);
             }
@@ -485,11 +584,26 @@ namespace SimplifiedEyeTracker
                     RightX = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth,
                     LeftY = Convert.ToDouble(e.LeftEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight,
                     RightY = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight,
-                    IsLeftValid = e.LeftEye.GazeOrigin.Validity == Validity.Valid,
-                    IsRightValid = e.RightEye.GazeOrigin.Validity == Validity.Valid
+                    IsLeftValid = isLeftValid,
+                    IsRightValid = isRightValid,
+                    LeftGazeVector = leftGazeUCSVector,
+                    RightGazeVector = rightGazeUCSVector,
+                    PrevLeftGazeVector = prevLeftGazeUCSVector,
+                    PrevRightGazeVector = prevRightGazeUCSVector,
+                    LeftGazeAngularDisplacementInDeg = leftThetaDeg,
+                    LeftGazeAngularDisplacementInRad = leftThetaRad,
+                    RightGazeAngularDisplacementInDeg = rightThetaDeg,
+                    RightGazeAngularDisplacementInRad = rightThetaRad,
+                    SystemTimeStampInterval = systemTimeStampInterval,
+                    LeftGazeAngularVelocity = leftAngularVelocity,
+                    RightGazeAngularVelocity = rightAngularVelocity
                 };
                 this.OnGazeData?.Invoke(this, gazeDataUsingScreenDimension);
             }
+
+            this.prevLeftGazeUCSVector = leftGazeUCSVector;
+            this.prevRightGazeUCSVector = rightGazeUCSVector;
+            this.prevSystemTimeStamp = e.SystemTimeStamp;
         }
     }
 }
