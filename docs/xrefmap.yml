@@ -57,6 +57,19 @@ references:
   isSpec: "True"
   fullName: SimplifiedEyeTracker.EyeTracker.GetDeviceName
   nameWithType: EyeTracker.GetDeviceName
+- uid: SimplifiedEyeTracker.EyeTracker.GetDisplayArea
+  name: GetDisplayArea()
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetDisplayArea
+  commentId: M:SimplifiedEyeTracker.EyeTracker.GetDisplayArea
+  fullName: SimplifiedEyeTracker.EyeTracker.GetDisplayArea()
+  nameWithType: EyeTracker.GetDisplayArea()
+- uid: SimplifiedEyeTracker.EyeTracker.GetDisplayArea*
+  name: GetDisplayArea
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetDisplayArea_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.GetDisplayArea
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.GetDisplayArea
+  nameWithType: EyeTracker.GetDisplayArea
 - uid: SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion
   name: GetFirmwareVersion()
   href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion

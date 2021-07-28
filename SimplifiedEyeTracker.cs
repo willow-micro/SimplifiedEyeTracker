@@ -440,7 +440,7 @@ namespace SimplifiedEyeTracker
         }
 
         /// <summary>
-        /// Get the Device Name for the current eye tracker.
+        /// Get the Device Name for the eye tracker.
         /// </summary>
         /// <returns>Device Name (if there is no device, returns null)</returns>
         public string GetDeviceName()
@@ -448,7 +448,7 @@ namespace SimplifiedEyeTracker
             return this.device?.DeviceName;
         }
         /// <summary>
-        /// Get the Serial Number for the current eye tracker.
+        /// Get the Serial Number for the eye tracker.
         /// </summary>
         /// <returns>Serial Number (if there is no device, returns null)</returns>
         public string GetSerialNumber()
@@ -456,7 +456,7 @@ namespace SimplifiedEyeTracker
             return this.device?.SerialNumber;
         }
         /// <summary>
-        /// Get the Model for the current eye tracker.
+        /// Get the Model for the eye tracker.
         /// </summary>
         /// <returns>Model (if there is no device, returns null)</returns>
         public string GetModel()
@@ -464,7 +464,7 @@ namespace SimplifiedEyeTracker
             return this.device?.Model;
         }
         /// <summary>
-        /// Get the Firmware Version for the current eye tracker.
+        /// Get the Firmware Version for the eye tracker.
         /// </summary>
         /// <returns>Firmware Version (if there is no device, returns null)</returns>
         public string GetFirmwareVersion()
@@ -472,12 +472,110 @@ namespace SimplifiedEyeTracker
             return this.device?.FirmwareVersion;
         }
         /// <summary>
-        /// Get the Runtime Version for the current eye tracker.
+        /// Get the Runtime Version for the eye tracker.
         /// </summary>
         /// <returns>Runtime Version (if there is no device, returns null)</returns>
         public string GetRuntimeVersion()
         {
             return this.device?.RuntimeVersion;
+        }
+
+        /// <summary>
+        /// Get the display area of the eye tracker.
+        /// </summary>
+        /// <returns>Tobii.Research.DisplayArea (if there is no device, returns null)</returns>
+        public DisplayArea GetDisplayArea()
+        {
+            return this.device?.GetDisplayArea();
+        }
+
+        /// <summary>
+        /// Calculate the pixel pitch. To use this method, you must specify a screen dimension in the constructor.
+        /// </summary>
+        /// <param name="calcHorizontalPitch">If false, calculate a vertical pixel pitch</param>
+        /// <returns>A horizontal or vertical pixel pitch</returns>
+        /// <exception cref="InvalidOperationException">Screen dimensions are not available (You must set in the constructor).</exception>
+        /// <exception cref="InvalidOperationException">Eye tracker not found.</exception>
+        public double CalcPixelPitch(bool calcHorizontalPitch = true)
+        {
+            if (this.screenWidth <= 0.0 && this.screenHeight <= 0.0)
+            {
+                throw new InvalidOperationException("Screen dimensions are not available.");
+            } 
+            else if (this.device == null)
+            {
+                throw new InvalidOperationException("Eye tracker not found.");
+            }
+            if (calcHorizontalPitch)
+            {
+                return (double)(this.device.GetDisplayArea().Width / this.screenWidth);
+            }
+            else
+            {
+                return (double)(this.device.GetDisplayArea().Height / this.screenHeight);
+            }
+        }
+
+        /// <summary>
+        /// Calculate pixels from millimeters. To use this method, you must specify a screen dimension in the constructor.
+        /// </summary>
+        /// <param name="millimeters">Length in millimeters</param>
+        /// <param name="useHorizontalPitch">if false, use vertical pixel pitch</param>
+        /// <returns>pixels (based on the dimensions set in the constructor)</returns>
+        /// <exception cref="InvalidOperationException">Screen dimensions are not available (You must set in the constructor).</exception>
+        /// <exception cref="InvalidOperationException">Eye tracker not found.</exception>
+        public double CalcPixelsFromMillimeters(double millimeters, bool useHorizontalPitch = true)
+        {
+            if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
+            {
+                throw new InvalidOperationException("Screen dimensions are not available.");
+            }
+            else if (this.device == null)
+            {
+                throw new InvalidOperationException("Eye tracker not found.");
+            }
+
+            if (useHorizontalPitch)
+            {
+                double hpp = (double)(this.device.GetDisplayArea().Width / this.screenWidth);
+                return millimeters / hpp;
+            }
+            else
+            {
+                double vpp = (double)(this.device.GetDisplayArea().Height / this.screenHeight);
+                return millimeters / vpp;
+            }
+        }
+
+        /// <summary>
+        /// Calculate millimeters from pixels. To use this method, you must specify a screen dimension in the constructor.
+        /// </summary>
+        /// <param name="pixels">Length in pixels</param>
+        /// <param name="useHorizontalPitch">if false, use vertical pixel pitch</param>
+        /// <returns>millimeters (dependent on the dimensions set in the constructor)</returns>
+        /// <exception cref="InvalidOperationException">Screen dimensions are not available (You must set in the constructor).</exception>
+        /// <exception cref="InvalidOperationException">Eye tracker not found.</exception>
+        public double CalcMillimetersFromPixels(double pixels, bool useHorizontalPitch = true)
+        {
+            if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
+            {
+                throw new InvalidOperationException("Screen dimensions are not available.");
+            }
+            else if (this.device == null)
+            {
+                throw new InvalidOperationException("Eye tracker not found.");
+            }
+
+            if (useHorizontalPitch)
+            {
+                double hpp = (double)(this.device.GetDisplayArea().Width / this.screenWidth);
+                return pixels * hpp;
+            }
+            else
+            {
+                double vpp = (double)(this.device.GetDisplayArea().Height / this.screenHeight);
+                return pixels * vpp;
+            }
         }
 
         /// <summary>
@@ -533,6 +631,7 @@ namespace SimplifiedEyeTracker
             Double leftCosineTheta = (Double)(Vector3.Dot(this.prevLeftGazeUCSVector, leftGazeUCSVector) / (this.prevLeftGazeUCSVector.Length() * leftGazeUCSVector.Length()));
             Double leftThetaRad = Math.Acos(leftCosineTheta);
             Double leftThetaDeg = leftThetaRad * 180.0 / Math.PI;
+
             Double rightCosineTheta = (Double)(Vector3.Dot(this.prevRightGazeUCSVector, rightGazeUCSVector) / (this.prevRightGazeUCSVector.Length() * rightGazeUCSVector.Length()));
             Double rightThetaRad = Math.Acos(rightCosineTheta);
             Double rightThetaDeg = rightThetaRad * 180.0 / Math.PI;
