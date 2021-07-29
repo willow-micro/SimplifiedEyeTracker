@@ -16,113 +16,6 @@ using Tobii.Research;
 namespace SimplifiedEyeTracker
 {
     /// <summary>
-    /// Enum for specify eyetrackers at overloaded <c>EyeTracker</c> constructor.
-    /// </summary>
-    /// <seealso cref="SimplifiedEyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String)"/>
-    public enum EyeTrackerIdentification
-    {
-        /// <summary>
-        /// Device Name of the device.
-        /// </summary>
-        DeviceName,
-        /// <summary>
-        /// Serial Number of the device.
-        /// </summary>
-        SerialNumber,
-        /// <summary>
-        /// Model of the device.
-        /// </summary>
-        Model,
-        /// <summary>
-        /// Firmware Version of the device.
-        /// </summary>
-        FirmwareVersion,
-        /// <summary>
-        /// Runtime Version of the device.
-        /// </summary>
-        RuntimeVersion
-    }
-
-    /// <summary>
-    /// EventArgs for <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>
-    /// </summary>
-    public sealed class SimplifiedGazeDataEventArgs : EventArgs
-    {
-        /// <summary>
-        /// Device Time Stamp.
-        /// </summary>
-        public long DeviceTimeStamp;
-        /// <summary>
-        /// System Time Stamp.
-        /// </summary>
-        public long SystemTimeStamp;
-        /// <summary>
-        /// X Coordinate of the Left eye gaze in the user display area. 
-        /// <c>0.0</c> is the left edge, <c>1.0</c> or <c>screenWidth</c> is the right edge of the screen.
-        /// </summary>
-        public double LeftX;
-        /// <summary>
-        /// X Coordinate of the Right eye gaze in the user display area. 
-        /// <c>0.0</c> is the left edge, <c>1.0</c> or <c>screenWidth</c> is the right edge of the screen.
-        /// </summary>
-        public double RightX;
-        /// <summary>
-        /// Y Coordinate of the Left eye gaze in the user display area. 
-        /// <c>0.0</c> is the top edge, <c>1.0</c> or <c>screenHeight</c> is the bottom edge of the screen.
-        /// </summary>
-        public double LeftY;
-        /// <summary>
-        /// Y Coordinate of the Right eye gaze in the user display area. 
-        /// <c>0.0</c> is the top edge, <c>1.0</c> or <c>screenHeight</c> is the bottom edge of the screen.
-        /// </summary>
-        public double RightY;
-        /// <summary>
-        /// If the Left eye is closed, it becomes false.
-        /// </summary>
-        public bool IsLeftValid;
-        /// <summary>
-        /// If the Right eye is closed, it becomes false.
-        /// </summary>
-        public bool IsRightValid;
-        /// <summary>
-        /// [Left Eye] Angular displacement in degrees
-        /// </summary>
-        public double LeftGazeAngularDisplacement;
-        /// <summary>
-        /// [Right Eye] Angular displacement in degrees
-        /// </summary>
-        public double RightGazeAngularDisplacement;
-        /// <summary>
-        /// Interval between the previous system time stamp and the latest system time stamp
-        /// </summary>
-        public int SystemTimeStampInterval;
-        /// <summary>
-        /// Angular Velocity for Left Gaze in deg/s
-        /// </summary>
-        public double LeftGazeAngularVelocity;
-        /// <summary>
-        /// Angular Velocity for Right Gaze in deg/s
-        /// </summary>
-        public double RightGazeAngularVelocity;
-        /// <summary>
-        /// [Left Eye] Gaze Point Difference in millimeters
-        /// </summary>
-        public double LeftGazeDifference;
-        /// <summary>
-        /// [Right Eye] Gaze Point Difference in millimeters
-        /// </summary>
-        public double RightGazeDifference;
-        /// <summary>
-        /// [Left Eye] Distance between the gaze origin to the gaze point
-        /// </summary>
-        public double LeftGazeDistance;
-        /// <summary>
-        /// [Right Eye] Distance between the gaze origin to the gaze point
-        /// </summary>
-        public double RightGazeDistance;
-    }
-
-    /// <summary>
     /// Simplified wrapper class for Tobii.Research.x64
     /// </summary>
     public sealed class EyeTracker
@@ -147,27 +40,36 @@ namespace SimplifiedEyeTracker
         /// Vertical Pixel Pitch
         /// </summary>
         private readonly double verticalPixelPitch;
-        
+
         /// <summary>
-        /// [Left Eye] Previous gaze point X value by millimeters
+        /// Gaze angular velocity calculation type
         /// </summary>
-        private double prevLeftGazePointX = 0.0;
+        private readonly VelocityCalcType velocityCalcType;
         /// <summary>
-        /// [Left Eye] Previous gaze point Y value by millimeters
+        /// Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade
         /// </summary>
-        private double prevLeftGazePointY = 0.0;
+        private readonly int fixationAngularVelocityThreshold;
         /// <summary>
-        /// [Right Eye] Previous gaze point X value by millimeters
+        /// [Left Eye] Previous gaze point
         /// </summary>
-        private double prevRightGazePointX = 0.0;
+        private GazePoint prevLeftGazePoint;
         /// <summary>
-        /// [Right Eye] Previous gaze point Y value by millimeters
+        /// [Left Eye] Previous gaze origin
         /// </summary>
-        private double prevRightGazePointY = 0.0;
+        private GazeOrigin prevLeftGazeOrigin;
+        /// <summary>
+        /// [Right Eye] Previous gaze point
+        /// </summary>
+        private GazePoint prevRightGazePoint;
+        /// <summary>
+        /// [Right Eye] Previous gaze origin
+        /// </summary>
+        private GazeOrigin prevRightGazeOrigin;
         /// <summary>
         /// Previous System Time Stamp [us]
         /// </summary>
         private long prevSystemTimeStamp;
+
 
         /// <summary>
         /// Delegate for the event <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>
@@ -175,6 +77,7 @@ namespace SimplifiedEyeTracker
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event arguments <seealso cref="SimplifiedEyeTracker.SimplifiedGazeDataEventArgs"/></param>
         public delegate void SimplifiedGazeDataEventHandler(object sender, SimplifiedGazeDataEventArgs e);
+
 
         /// <summary>
         /// EventHandler for make gaze data available from user
@@ -184,35 +87,21 @@ namespace SimplifiedEyeTracker
         /// </remarks>
         public event SimplifiedGazeDataEventHandler OnGazeData;
 
+
         /// <summary>
         /// Constructor. Use the first eye tracker in the <c>Tobii.Research.EyeTrackerCollection</c>.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Eye Tracker(s) not found</exception>
-        public EyeTracker()
-        {
-            EyeTrackerCollection eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers();
-            if (eyeTrackers.Count > 0)
-            {
-                this.device = eyeTrackers[0];
-                this.screenWidth = 0.0;
-                this.screenHeight = 0.0;
-                this.horizontalPixelPitch = 0.0;
-                this.verticalPixelPitch = 0.0;
-            }
-            else
-            {
-                throw new InvalidOperationException("Eye Tracker(s) not found.");
-            }
-        }
-        /// <summary>
-        /// Overloaded constructor. Use the first eye tracker in the <c>Tobii.Research.EyeTrackerCollection</c>.
-        /// </summary>
-        /// <param name="screenWidth">Max value of gaze x positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/></param>
-        /// <param name="screenHeight">Max value of gaze y positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/></param>
+        /// <param name="screenWidth">Screen width in pixels. (Max value of gaze x positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
+        /// <param name="screenHeight">Screen height in pixels. (Max value of gaze y positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
+        /// <param name="vCalcType">Calculation type for gaze angular velocity</param>
+        /// <param name="fixationVelocityThresh">Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade</param>
         /// <exception cref="ArgumentOutOfRangeException">Provided screen dimension is invalid</exception>
         /// <exception cref="InvalidOperationException">Eye tracker(s) not found</exception>
-        public EyeTracker(double screenWidth, double screenHeight)
+        public EyeTracker(double screenWidth, double screenHeight, VelocityCalcType vCalcType=VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30)
         {
+            this.velocityCalcType = vCalcType;
+            this.fixationAngularVelocityThreshold = fixationVelocityThresh;
+
             EyeTrackerCollection eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers();
             if (screenWidth <= 0 || screenHeight <= 0)
             {
@@ -236,128 +125,17 @@ namespace SimplifiedEyeTracker
         /// </summary>
         /// <param name="identificationType">The way to specify the eye tracker. <seealso cref="T:SimplifiedEyeTracker.EyeTrackerIdentification"/></param>
         /// <param name="identificationString">The string for specify the eye tracker.</param>
-        /// <exception cref="InvalidOperationException">Eye Tracker(s) not found</exception>
-        public EyeTracker(EyeTrackerIdentification identificationType, string identificationString)
-        {
-            EyeTrackerCollection eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers();
-            if (eyeTrackers.Count > 0)
-            {
-                bool initialized = false;
-                switch (identificationType)
-                {
-                    case EyeTrackerIdentification.DeviceName:
-                        foreach (IEyeTracker eyeTracker in eyeTrackers)
-                        {
-                            if (eyeTracker.DeviceName == identificationString)
-                            {
-                                this.device = eyeTracker;
-                                this.screenWidth = 0.0;
-                                this.screenHeight = 0.0;
-                                this.horizontalPixelPitch = 0.0;
-                                this.verticalPixelPitch = 0.0;
-                                initialized = true;
-                                break;
-                            }
-                        }
-                        if (!initialized)
-                        {
-                            throw new InvalidOperationException($"Eye Tracker not found with the Device Name: {identificationString}");
-                        }
-                        break;
-                    case EyeTrackerIdentification.SerialNumber:
-                        foreach (IEyeTracker eyeTracker in eyeTrackers)
-                        {
-                            if (eyeTracker.SerialNumber == identificationString)
-                            {
-                                this.device = eyeTracker;
-                                this.screenWidth = 0.0;
-                                this.screenHeight = 0.0;
-                                this.horizontalPixelPitch = 0.0;
-                                this.verticalPixelPitch = 0.0;
-                                initialized = true;
-                                break;
-                            }
-                        }
-                        if (!initialized)
-                        {
-                            throw new InvalidOperationException($"Eye Tracker not found with the Serial Number: {identificationString}");
-                        }
-                        break;
-                    case EyeTrackerIdentification.Model:
-                        foreach (IEyeTracker eyeTracker in eyeTrackers)
-                        {
-                            if (eyeTracker.Model == identificationString)
-                            {
-                                this.device = eyeTracker;
-                                this.screenWidth = 0.0;
-                                this.screenHeight = 0.0;
-                                this.horizontalPixelPitch = 0.0;
-                                this.verticalPixelPitch = 0.0;
-                                initialized = true;
-                                break;
-                            }
-                        }
-                        if (!initialized)
-                        {
-                            throw new InvalidOperationException($"Eye Tracker not found with the Model: {identificationString}");
-                        }
-                        break;
-                    case EyeTrackerIdentification.FirmwareVersion:
-                        foreach (IEyeTracker eyeTracker in eyeTrackers)
-                        {
-                            if (eyeTracker.FirmwareVersion == identificationString)
-                            {
-                                this.device = eyeTracker;
-                                this.screenWidth = 0.0;
-                                this.screenHeight = 0.0;
-                                this.horizontalPixelPitch = 0.0;
-                                this.verticalPixelPitch = 0.0;
-                                initialized = true;
-                                break;
-                            }
-                        }
-                        if (!initialized)
-                        {
-                            throw new InvalidOperationException($"Eye Tracker not found with the Firmware Version: {identificationString}");
-                        }
-                        break;
-                    case EyeTrackerIdentification.RuntimeVersion:
-                        foreach (IEyeTracker eyeTracker in eyeTrackers)
-                        {
-                            if (eyeTracker.RuntimeVersion == identificationString)
-                            {
-                                this.device = eyeTracker;
-                                this.screenWidth = 0.0;
-                                this.screenHeight = 0.0;
-                                this.horizontalPixelPitch = 0.0;
-                                this.verticalPixelPitch = 0.0;
-                                initialized = true;
-                                break;
-                            }
-                        }
-                        if (!initialized)
-                        {
-                            throw new InvalidOperationException($"Eye Tracker not found with the Runtime Version: {identificationString}");
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException("Eye Tracker(s) not found.");
-            }
-        }
-        /// <summary>
-        /// Overloaded constructor. Use the eye tracker which has <c>identificationString</c> for <c>identificationType</c> in the <c>Tobii.Research.EyeTrackerCollection</c>.
-        /// </summary>
-        /// <param name="identificationType">The way to specify the eye tracker. <seealso cref="T:SimplifiedEyeTracker.EyeTrackerIdentification"/></param>
-        /// <param name="identificationString">The string for specify the eye tracker.</param>
-        /// <param name="screenWidth">Max value of gaze x positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/></param>
-        /// <param name="screenHeight">Max value of gaze y positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/></param>
+        /// <param name="screenWidth">Screen width in pixels. (Max value of gaze x positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
+        /// <param name="screenHeight">Screen height in pixels. (Max value of gaze y positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
+        /// <param name="vCalcType">Calculation type for gaze angular velocity</param>
+        /// <param name="fixationVelocityThresh">Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade</param>
         /// <exception cref="ArgumentOutOfRangeException">Provided screen dimension is invalid</exception>
         /// <exception cref="InvalidOperationException">Eye Tracker(s) not found</exception>
-        public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight)
+        public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30)
         {
+            this.velocityCalcType = vCalcType;
+            this.fixationAngularVelocityThreshold = fixationVelocityThresh;
+
             EyeTrackerCollection eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers();
             if (screenWidth <= 0 || screenHeight <= 0)
             {
@@ -522,17 +300,57 @@ namespace SimplifiedEyeTracker
         }
 
         /// <summary>
+        /// Get the screen width in pixels (same as constructor's screenWidth)
+        /// </summary>
+        /// <returns>Screen width in pixels</returns>
+        public double GetScreenWidthInPixels()
+        {
+            return this.screenWidth;
+        }
+
+        /// <summary>
+        /// Get the screen height in pixels (same as constructor's screenHeight)
+        /// </summary>
+        /// <returns>Screen height in pixels</returns>
+        public double GetScreenHeightInPixels()
+        {
+            return this.screenHeight;
+        }
+
+        /// <summary>
+        /// Get the screen width in millimeters
+        /// </summary>
+        /// <returns>Screen width in millimeters (if there is no eye tracker, returns NaN)</returns>
+        public double GetScreenWidthInMillimeters()
+        {
+            if (this.device == null)
+            {
+                return double.NaN;
+            }
+            return this.device.GetDisplayArea().Width;
+        }
+
+        /// <summary>
+        /// Get the screen height in millimeters
+        /// </summary>
+        /// <returns>Screen height in millimeters (if there is no eye tracker, returns NaN)</returns>
+        public double GetScreenHeightInMillimeters()
+        {
+            if (this.device == null)
+            {
+                return double.NaN;
+            }
+            return this.device.GetDisplayArea().Height;
+        }
+
+        /// <summary>
         /// Calculate the pixel pitch. To use this method, you must specify a screen dimension in the constructor.
         /// </summary>
         /// <param name="calcHorizontalPitch">If false, calculate a vertical pixel pitch</param>
         /// <returns>A horizontal or vertical pixel pitch or NaN</returns>
         public double CalcPixelPitch(bool calcHorizontalPitch = true)
         {
-            if (this.screenWidth <= 0.0 && this.screenHeight <= 0.0)
-            {
-                return double.NaN;
-            } 
-            else if (this.device == null)
+            if (this.device == null)
             {
                 return double.NaN;
             }
@@ -554,11 +372,7 @@ namespace SimplifiedEyeTracker
         /// <returns>pixels (based on the dimensions set in the constructor) or NaN</returns>
         public double CalcPixelsFromMillimeters(double millimeters, bool useHorizontalPitch = true)
         {
-            if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
-            {
-                return double.NaN;
-            }
-            else if (this.device == null)
+            if (this.device == null)
             {
                 return double.NaN;
             }
@@ -581,11 +395,7 @@ namespace SimplifiedEyeTracker
         /// <returns>millimeters (dependent on the dimensions set in the constructor) or NaN</returns>
         public double CalcMillimetersFromPixels(double pixels, bool useHorizontalPitch = true)
         {
-            if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
-            {
-                return double.NaN;
-            }
-            else if (this.device == null)
+            if (this.device == null)
             {
                 return double.NaN;
             }
@@ -632,108 +442,158 @@ namespace SimplifiedEyeTracker
         }
 
         /// <summary>
+        /// Calculate Angular Velocity from interval and gaze point/origin data.
+        /// </summary>
+        /// <param name="timeInterval">Time interval in usec.</param>
+        /// <param name="currentGazePoint">Current gaze point with Tobii.Reseach.GazePoint</param>
+        /// <param name="currentGazeOrigin">Current gaze origin with Tobii.Reseach.GazeOrigin</param>
+        /// <param name="prevGazePoint">Previous gaze point with Tobii.Reseach.GazePoint</param>
+        /// <param name="prevGazeOrigin">Previous gaze origin with Tobii.Reseach.GazeOrigin</param>
+        private double CalcAngularVelocityFrom(int timeInterval, GazePoint currentGazePoint, GazeOrigin currentGazeOrigin, GazePoint prevGazePoint, GazeOrigin prevGazeOrigin)
+        {
+            double thetaRad;
+            double angularVelocity;
+
+            if (timeInterval <= 0) 
+            {
+                return double.NaN;
+            }
+
+            // UCS vector from tracker to point
+            Vector3 gazePointUCSVector = new Vector3(currentGazePoint.PositionInUserCoordinates.X, currentGazePoint.PositionInUserCoordinates.Y, currentGazePoint.PositionInUserCoordinates.Z);
+            // UCS vector from tracker to origin
+            Vector3 gazeOriginUCSVector = new Vector3(currentGazeOrigin.PositionInUserCoordinates.X, currentGazeOrigin.PositionInUserCoordinates.Y, currentGazeOrigin.PositionInUserCoordinates.Z);
+
+            if (this.velocityCalcType == VelocityCalcType.UCSGazeVector)
+            {
+                // Previous UCS vector from tracker to point
+                Vector3 prevGazePointUCSVector = new Vector3(prevGazePoint.PositionInUserCoordinates.X, prevGazePoint.PositionInUserCoordinates.Y, prevGazePoint.PositionInUserCoordinates.Z);
+                // Previous UCS vector from tracker to origin
+                Vector3 prevGazeOriginUCSVector = new Vector3(prevGazeOrigin.PositionInUserCoordinates.X, prevGazeOrigin.PositionInUserCoordinates.Y, prevGazeOrigin.PositionInUserCoordinates.Z);
+                // Gaze vectors
+                Vector3 gazeUCSVector = Vector3.Subtract(gazePointUCSVector, gazeOriginUCSVector);
+                Vector3 prevGazeUCSVector = Vector3.Subtract(prevGazePointUCSVector, prevGazeOriginUCSVector);
+                // cos(theta)
+                double cosineTheta = (double)(Vector3.Dot(prevGazeUCSVector, gazeUCSVector) / (prevGazeUCSVector.Length() * gazeUCSVector.Length()));
+                // Radians
+                thetaRad = Math.Acos(cosineTheta);
+            }
+            else if (this.velocityCalcType == VelocityCalcType.PixelPitchAndUCSDistance)
+            {
+                // Distance from origin to point
+                double distanceFromOriginToPoint = (double)Vector3.Distance(gazeOriginUCSVector, gazePointUCSVector);
+                // Gaze point difference from previous position
+                double gazePointXInPixels = (double)(currentGazePoint.PositionOnDisplayArea.X * this.screenWidth);
+                double gazePointYInPixels = (double)(currentGazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+                double gazePointXInMillimeters = this.CalcMillimetersFromPixels(gazePointXInPixels);
+                double gazePointYInMillimeters = this.CalcMillimetersFromPixels(gazePointYInPixels);
+                double prevGazePointXInPixels = (double)(prevGazePoint.PositionOnDisplayArea.X * this.screenWidth);
+                double prevGazePointYInPixels = (double)(prevGazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+                double prevGazePointXInMillimeters = this.CalcMillimetersFromPixels(prevGazePointXInPixels);
+                double prevGazePointYInMillimeters = this.CalcMillimetersFromPixels(prevGazePointYInPixels);
+                double gazePointDifference = Math.Sqrt(Math.Pow(gazePointXInMillimeters - prevGazePointXInMillimeters, 2) + Math.Pow(gazePointYInMillimeters - prevGazePointYInMillimeters, 2));
+                // Radians
+                thetaRad = Math.Atan2(gazePointDifference, distanceFromOriginToPoint);
+            }
+            else
+            {
+                return double.NaN;                   
+            }
+
+            if (thetaRad == double.NaN)
+            {
+                return double.NaN;
+            }
+
+            // Degrees
+            double thetaDeg = thetaRad * 180.0 / Math.PI;
+            // Angular Velocity
+            angularVelocity = thetaDeg * 1000000 / timeInterval;
+
+            return angularVelocity;
+        }
+
+
+        /// <summary>
         /// Internal gaze data receive handler for <c>Tobii.Research.IEyeTracker.GazeDataReceived</c>
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event arguments</param>
         private void GazeDataReceived(object sender, GazeDataEventArgs e)
         {
+            // Time stamp inteval
+            int systemTimeStampInterval = (int)(e.SystemTimeStamp - this.prevSystemTimeStamp);
+            if (systemTimeStampInterval < 0)
+            {
+                systemTimeStampInterval = 0;
+            }
+
+            // Validity
             bool isLeftValid = e.LeftEye.GazeOrigin.Validity == Validity.Valid && e.LeftEye.GazePoint.Validity == Validity.Valid;
             bool isRightValid = e.RightEye.GazeOrigin.Validity == Validity.Valid && e.RightEye.GazePoint.Validity == Validity.Valid;
 
-            int systemTimeStampInterval = (int)(e.SystemTimeStamp - this.prevSystemTimeStamp);
-
-            Vector3 leftGazePointUCSVector = new Vector3(e.LeftEye.GazePoint.PositionInUserCoordinates.X, e.LeftEye.GazePoint.PositionInUserCoordinates.Y, e.LeftEye.GazePoint.PositionInUserCoordinates.Z);
-            Vector3 rightGazePointUCSVector = new Vector3(e.RightEye.GazePoint.PositionInUserCoordinates.X, e.RightEye.GazePoint.PositionInUserCoordinates.Y, e.RightEye.GazePoint.PositionInUserCoordinates.Z);
-            Vector3 leftGazeOriginUCSVector = new Vector3(e.LeftEye.GazeOrigin.PositionInUserCoordinates.X, e.LeftEye.GazeOrigin.PositionInUserCoordinates.Y, e.LeftEye.GazeOrigin.PositionInUserCoordinates.Z);
-            Vector3 rightGazeOriginUCSVector = new Vector3(e.RightEye.GazeOrigin.PositionInUserCoordinates.X, e.RightEye.GazeOrigin.PositionInUserCoordinates.Y, e.RightEye.GazeOrigin.PositionInUserCoordinates.Z);
-
-            double leftDistanceFromOriginToPoint = (double)Vector3.Distance(leftGazeOriginUCSVector, leftGazePointUCSVector);
-            double rightDistanceFromOriginToPoint = (double)Vector3.Distance(rightGazeOriginUCSVector, rightGazePointUCSVector);
-
-            double leftGazePointXInPixels = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
-            double leftGazePointYInPixels = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
-            double rightGazePointXInPixels = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
-            double rightGazePointYInPixels = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+            // Fixation
+            double leftAngularVelocity;
+            double rightAngularVelocity;
+            EyeMovementType leftEyeMovementType;
+            EyeMovementType rightEyeMovementType;
             
-            double leftGazePointXInMillimeters = this.CalcMillimetersFromPixels(leftGazePointXInPixels);
-            double leftGazePointYInMillimeters = this.CalcMillimetersFromPixels(leftGazePointYInPixels);
-            double rightGazePointXInMillimeters = this.CalcMillimetersFromPixels(rightGazePointXInPixels);
-            double rightGazePointYInMillimeters = this.CalcMillimetersFromPixels(rightGazePointYInPixels);
-
-            double leftGazePointDifference = Math.Sqrt(Math.Pow(leftGazePointXInMillimeters - prevLeftGazePointX, 2) + Math.Pow(leftGazePointYInMillimeters - prevLeftGazePointY, 2));
-            double rightGazePointDifference = Math.Sqrt(Math.Pow(rightGazePointXInMillimeters - prevRightGazePointX, 2) + Math.Pow(rightGazePointYInMillimeters - prevRightGazePointY, 2));
-
-            double leftThetaRad = Math.Atan2(leftGazePointDifference, leftDistanceFromOriginToPoint);
-            double leftThetaDeg = (leftThetaRad == double.NaN) ? double.NaN : leftThetaRad * 180.0 / Math.PI;
-            double rightThetaRad = Math.Atan2(rightGazePointDifference, rightDistanceFromOriginToPoint);
-            double rightThetaDeg = (rightThetaRad == double.NaN) ? double.NaN : rightThetaRad * 180.0 / Math.PI;
-
-            double leftAngularVelocity = leftThetaDeg * 1000000 / systemTimeStampInterval;
-            if (leftAngularVelocity == double.NaN)
+            if (this.fixationAngularVelocityThreshold > 0)
             {
-                isLeftValid = false;
-            }
-            double rightAngularVelocity = rightThetaDeg * 1000000 / systemTimeStampInterval;
-            if (rightAngularVelocity == double.NaN)
-            {
-                isRightValid = false;
-            }
-
-            if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
-            {
-                SimplifiedGazeDataEventArgs gazeData = new SimplifiedGazeDataEventArgs()
+                // If thresh is valid
+                leftAngularVelocity = this.CalcAngularVelocityFrom(systemTimeStampInterval, e.LeftEye.GazePoint, e.LeftEye.GazeOrigin, this.prevLeftGazePoint, this.prevLeftGazeOrigin);
+                rightAngularVelocity = this.CalcAngularVelocityFrom(systemTimeStampInterval, e.RightEye.GazePoint, e.RightEye.GazeOrigin, this.prevRightGazePoint, this.prevRightGazeOrigin);
+                if (leftAngularVelocity == double.NaN)
                 {
-                    DeviceTimeStamp = e.DeviceTimeStamp,
-                    SystemTimeStamp = e.SystemTimeStamp,
-                    LeftX = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.X),
-                    RightX = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.X),
-                    LeftY = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.Y),
-                    RightY = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.Y),
-                    IsLeftValid = isLeftValid,
-                    IsRightValid = isRightValid,
-                    LeftGazeAngularDisplacement = leftThetaDeg,
-                    RightGazeAngularDisplacement = rightThetaDeg,
-                    SystemTimeStampInterval = systemTimeStampInterval,
-                    LeftGazeAngularVelocity = leftAngularVelocity,
-                    RightGazeAngularVelocity = rightAngularVelocity,
-                    LeftGazeDifference = leftGazePointDifference,
-                    RightGazeDifference = rightGazePointDifference,
-                    LeftGazeDistance = leftDistanceFromOriginToPoint,
-                    RightGazeDistance = rightDistanceFromOriginToPoint
-                };
-                this.OnGazeData?.Invoke(this, gazeData);
+                    isLeftValid = false;
+                    leftEyeMovementType = EyeMovementType.Unknown;
+                }
+                else
+                {
+                    leftEyeMovementType = (leftAngularVelocity > this.fixationAngularVelocityThreshold) ? EyeMovementType.Saccade : EyeMovementType.Fixation;
+                }
+                if (rightAngularVelocity == double.NaN)
+                {
+                    isRightValid = false;
+                    rightEyeMovementType = EyeMovementType.Unknown;
+                }
+                else
+                {
+                    rightEyeMovementType = (rightAngularVelocity > this.fixationAngularVelocityThreshold) ? EyeMovementType.Saccade : EyeMovementType.Fixation;
+                }
             }
             else
             {
-                SimplifiedGazeDataEventArgs gazeDataUsingScreenDimension = new SimplifiedGazeDataEventArgs()
-                {
-                    DeviceTimeStamp = e.DeviceTimeStamp,
-                    SystemTimeStamp = e.SystemTimeStamp,
-                    LeftX = (double)((e.LeftEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth),
-                    RightX = (double)((e.RightEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth),
-                    LeftY = (double)((e.LeftEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight),
-                    RightY = (double)((e.RightEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight),
-                    IsLeftValid = isLeftValid,
-                    IsRightValid = isRightValid,
-                    LeftGazeAngularDisplacement = leftThetaDeg,
-                    RightGazeAngularDisplacement = rightThetaDeg,
-                    SystemTimeStampInterval = systemTimeStampInterval,
-                    LeftGazeAngularVelocity = leftAngularVelocity,
-                    RightGazeAngularVelocity = rightAngularVelocity,
-                    LeftGazeDifference = leftGazePointDifference,
-                    RightGazeDifference = rightGazePointDifference,
-                    LeftGazeDistance = leftDistanceFromOriginToPoint,
-                    RightGazeDistance = rightDistanceFromOriginToPoint
-                };
-                this.OnGazeData?.Invoke(this, gazeDataUsingScreenDimension);
+                // If thresh is not valid
+                leftAngularVelocity = double.NaN;
+                rightAngularVelocity = double.NaN;
+                leftEyeMovementType = EyeMovementType.Unknown;
+                rightEyeMovementType = EyeMovementType.Unknown;
             }
 
-            this.prevLeftGazePointX = this.CalcMillimetersFromPixels(e.LeftEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
-            this.prevLeftGazePointY = this.CalcMillimetersFromPixels(e.LeftEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
-            this.prevRightGazePointX = this.CalcMillimetersFromPixels(e.RightEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
-            this.prevRightGazePointY = this.CalcMillimetersFromPixels(e.RightEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+            // If screen dimensions are not specified
+            SimplifiedGazeDataEventArgs gazeDataUsingScreenDimension = new SimplifiedGazeDataEventArgs()
+            {
+                DeviceTimeStamp = e.DeviceTimeStamp,
+                SystemTimeStamp = e.SystemTimeStamp,
+                LeftX = (double)((e.LeftEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth),
+                RightX = (double)((e.RightEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth),
+                LeftY = (double)((e.LeftEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight),
+                RightY = (double)((e.RightEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight),
+                IsLeftValid = isLeftValid,
+                IsRightValid = isRightValid,
+                SystemTimeStampInterval = systemTimeStampInterval,
+                LeftGazeAngularVelocity = leftAngularVelocity,
+                RightGazeAngularVelocity = rightAngularVelocity,
+                LeftEyeMovementType = leftEyeMovementType,
+                RightEyeMovementType = rightEyeMovementType
+            };
+            this.OnGazeData?.Invoke(this, gazeDataUsingScreenDimension);
 
+            this.prevLeftGazePoint = e.LeftEye.GazePoint;
+            this.prevLeftGazeOrigin = e.LeftEye.GazeOrigin;
+            this.prevRightGazePoint = e.RightEye.GazePoint;
+            this.prevRightGazeOrigin = e.RightEye.GazeOrigin;
             this.prevSystemTimeStamp = e.SystemTimeStamp;
         }
     }

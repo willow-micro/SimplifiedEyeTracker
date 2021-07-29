@@ -65,11 +65,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.EyeMovementType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.EyeMovementType.html",
+          "hash": "f3eYCI+tg3j9MH2OCWJiUnA1xjE82/4XCTyciR++EhU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/SimplifiedEyeTracker.EyeTracker.SimplifiedGazeDataEventHandler.yml",
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.EyeTracker.SimplifiedGazeDataEventHandler.html",
-          "hash": "i7aUuwRR/+D9dteAUu536cyAG1kEzvgRYwWduRWZfZ0="
+          "hash": "yKFB6k8wjvqnRXBwYg27tllO63ThE6JfV8QUWFOnOCs="
         }
       },
       "is_incremental": false,
@@ -81,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.EyeTracker.html",
-          "hash": "ap84kUDtQfXWwT33z5ARihXcCSeLPTD9Awd5Qg9WiBA="
+          "hash": "n5JAD5NltYDH25kJlsfop4w1+9syFEbi2UKsawvaVhA="
         }
       },
       "is_incremental": false,
@@ -93,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.EyeTrackerIdentification.html",
-          "hash": "2Vp96d4Fimi47dse9CXHGjT/71S9Sh1LFt/3W/E7u1c="
+          "hash": "y85I4nFAwG49qQU0WMcQRldHgyFTJDH4/dBZPkLUrBU="
         }
       },
       "is_incremental": false,
@@ -105,7 +117,19 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html",
-          "hash": "/SeFUvzRYsxqaJ7+YEkFiAvR4Uzq0CSVTKCBb3EG5Sk="
+          "hash": "slci19ylDSbp5gpVJEuRliHwXlqpvxESWJtXDH2R/08="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.VelocityCalcType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.VelocityCalcType.html",
+          "hash": "R+5gg6h517t9oHwx13kBVxWb6YadtQaWk/P0+MqOlog="
         }
       },
       "is_incremental": false,
@@ -117,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.html",
-          "hash": "AmZMQ6O4TjCobt/GTQvNsUJ6GxjSI7vyk8/IlFZLgBU="
+          "hash": "b64qCaXj4mh677o2yP1Na8mgGW+ZG1EruZnu3dTVIg0="
         }
       },
       "is_incremental": false,
@@ -129,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "lrEtEOZsSp3HxpVdLltyW45/Pvgr9onU2+KkJ8X+4Uo="
+          "hash": "/iasw0QbOTOZyjLgbKq2ml1YODJ/oEDURohLxRE2R5o="
         }
       },
       "is_incremental": false,
@@ -168,7 +192,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 5,
+          "total_file_count": 7,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

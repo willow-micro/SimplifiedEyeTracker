@@ -7,36 +7,48 @@ references:
   commentId: N:SimplifiedEyeTracker
   fullName: SimplifiedEyeTracker
   nameWithType: SimplifiedEyeTracker
+- uid: SimplifiedEyeTracker.EyeMovementType
+  name: EyeMovementType
+  href: api/SimplifiedEyeTracker.EyeMovementType.html
+  commentId: T:SimplifiedEyeTracker.EyeMovementType
+  fullName: SimplifiedEyeTracker.EyeMovementType
+  nameWithType: EyeMovementType
+- uid: SimplifiedEyeTracker.EyeMovementType.Fixation
+  name: Fixation
+  href: api/SimplifiedEyeTracker.EyeMovementType.html#SimplifiedEyeTracker_EyeMovementType_Fixation
+  commentId: F:SimplifiedEyeTracker.EyeMovementType.Fixation
+  fullName: SimplifiedEyeTracker.EyeMovementType.Fixation
+  nameWithType: EyeMovementType.Fixation
+- uid: SimplifiedEyeTracker.EyeMovementType.Saccade
+  name: Saccade
+  href: api/SimplifiedEyeTracker.EyeMovementType.html#SimplifiedEyeTracker_EyeMovementType_Saccade
+  commentId: F:SimplifiedEyeTracker.EyeMovementType.Saccade
+  fullName: SimplifiedEyeTracker.EyeMovementType.Saccade
+  nameWithType: EyeMovementType.Saccade
+- uid: SimplifiedEyeTracker.EyeMovementType.Unknown
+  name: Unknown
+  href: api/SimplifiedEyeTracker.EyeMovementType.html#SimplifiedEyeTracker_EyeMovementType_Unknown
+  commentId: F:SimplifiedEyeTracker.EyeMovementType.Unknown
+  fullName: SimplifiedEyeTracker.EyeMovementType.Unknown
+  nameWithType: EyeMovementType.Unknown
 - uid: SimplifiedEyeTracker.EyeTracker
   name: EyeTracker
   href: api/SimplifiedEyeTracker.EyeTracker.html
   commentId: T:SimplifiedEyeTracker.EyeTracker
   fullName: SimplifiedEyeTracker.EyeTracker
   nameWithType: EyeTracker
-- uid: SimplifiedEyeTracker.EyeTracker.#ctor
-  name: EyeTracker()
-  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor
-  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor
-  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker()
-  nameWithType: EyeTracker.EyeTracker()
-- uid: SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String)
-  name: EyeTracker(EyeTrackerIdentification, String)
-  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_
-  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String)
-  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String)
-  nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String)
-- uid: SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double)
-  name: EyeTracker(EyeTrackerIdentification, String, Double, Double)
-  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_
-  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double)
-  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String, System.Double, System.Double)
-  nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String, Double, Double)
-- uid: SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double)
-  name: EyeTracker(Double, Double)
-  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_
-  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double)
-  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(System.Double, System.Double)
-  nameWithType: EyeTracker.EyeTracker(Double, Double)
+- uid: SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
+  name: EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
+  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String, System.Double, System.Double, SimplifiedEyeTracker.VelocityCalcType, System.Int32)
+  nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32)
+- uid: SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
+  name: EyeTracker(Double, Double, VelocityCalcType, Int32)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
+  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(System.Double, System.Double, SimplifiedEyeTracker.VelocityCalcType, System.Int32)
+  nameWithType: EyeTracker.EyeTracker(Double, Double, VelocityCalcType, Int32)
 - uid: SimplifiedEyeTracker.EyeTracker.#ctor*
   name: EyeTracker
   href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_
@@ -148,6 +160,58 @@ references:
   isSpec: "True"
   fullName: SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion
   nameWithType: EyeTracker.GetRuntimeVersion
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters
+  name: GetScreenHeightInMillimeters()
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenHeightInMillimeters
+  commentId: M:SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters()
+  nameWithType: EyeTracker.GetScreenHeightInMillimeters()
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters*
+  name: GetScreenHeightInMillimeters
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenHeightInMillimeters_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters
+  nameWithType: EyeTracker.GetScreenHeightInMillimeters
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels
+  name: GetScreenHeightInPixels()
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenHeightInPixels
+  commentId: M:SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels()
+  nameWithType: EyeTracker.GetScreenHeightInPixels()
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels*
+  name: GetScreenHeightInPixels
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenHeightInPixels_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels
+  nameWithType: EyeTracker.GetScreenHeightInPixels
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters
+  name: GetScreenWidthInMillimeters()
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenWidthInMillimeters
+  commentId: M:SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters()
+  nameWithType: EyeTracker.GetScreenWidthInMillimeters()
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters*
+  name: GetScreenWidthInMillimeters
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenWidthInMillimeters_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters
+  nameWithType: EyeTracker.GetScreenWidthInMillimeters
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels
+  name: GetScreenWidthInPixels()
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenWidthInPixels
+  commentId: M:SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels()
+  nameWithType: EyeTracker.GetScreenWidthInPixels()
+- uid: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels*
+  name: GetScreenWidthInPixels
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetScreenWidthInPixels_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels
+  nameWithType: EyeTracker.GetScreenWidthInPixels
 - uid: SimplifiedEyeTracker.EyeTracker.GetSerialNumber
   name: GetSerialNumber()
   href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetSerialNumber
@@ -259,30 +323,18 @@ references:
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.IsRightValid
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.IsRightValid
   nameWithType: SimplifiedGazeDataEventArgs.IsRightValid
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
-  name: LeftGazeAngularDisplacement
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeAngularDisplacement
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
-  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftEyeMovementType
+  name: LeftEyeMovementType
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftEyeMovementType
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftEyeMovementType
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftEyeMovementType
+  nameWithType: SimplifiedGazeDataEventArgs.LeftEyeMovementType
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
   name: LeftGazeAngularVelocity
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeAngularVelocity
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
   nameWithType: SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDifference
-  name: LeftGazeDifference
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeDifference
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDifference
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDifference
-  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeDifference
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDistance
-  name: LeftGazeDistance
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeDistance
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDistance
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDistance
-  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeDistance
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftX
   name: LeftX
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftX
@@ -295,30 +347,18 @@ references:
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftY
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftY
   nameWithType: SimplifiedGazeDataEventArgs.LeftY
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
-  name: RightGazeAngularDisplacement
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeAngularDisplacement
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
-  nameWithType: SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightEyeMovementType
+  name: RightEyeMovementType
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightEyeMovementType
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightEyeMovementType
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightEyeMovementType
+  nameWithType: SimplifiedGazeDataEventArgs.RightEyeMovementType
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
   name: RightGazeAngularVelocity
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeAngularVelocity
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
   nameWithType: SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDifference
-  name: RightGazeDifference
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeDifference
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDifference
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDifference
-  nameWithType: SimplifiedGazeDataEventArgs.RightGazeDifference
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDistance
-  name: RightGazeDistance
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeDistance
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDistance
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDistance
-  nameWithType: SimplifiedGazeDataEventArgs.RightGazeDistance
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightX
   name: RightX
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightX
@@ -343,3 +383,21 @@ references:
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.SystemTimeStampInterval
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.SystemTimeStampInterval
   nameWithType: SimplifiedGazeDataEventArgs.SystemTimeStampInterval
+- uid: SimplifiedEyeTracker.VelocityCalcType
+  name: VelocityCalcType
+  href: api/SimplifiedEyeTracker.VelocityCalcType.html
+  commentId: T:SimplifiedEyeTracker.VelocityCalcType
+  fullName: SimplifiedEyeTracker.VelocityCalcType
+  nameWithType: VelocityCalcType
+- uid: SimplifiedEyeTracker.VelocityCalcType.PixelPitchAndUCSDistance
+  name: PixelPitchAndUCSDistance
+  href: api/SimplifiedEyeTracker.VelocityCalcType.html#SimplifiedEyeTracker_VelocityCalcType_PixelPitchAndUCSDistance
+  commentId: F:SimplifiedEyeTracker.VelocityCalcType.PixelPitchAndUCSDistance
+  fullName: SimplifiedEyeTracker.VelocityCalcType.PixelPitchAndUCSDistance
+  nameWithType: VelocityCalcType.PixelPitchAndUCSDistance
+- uid: SimplifiedEyeTracker.VelocityCalcType.UCSGazeVector
+  name: UCSGazeVector
+  href: api/SimplifiedEyeTracker.VelocityCalcType.html#SimplifiedEyeTracker_VelocityCalcType_UCSGazeVector
+  commentId: F:SimplifiedEyeTracker.VelocityCalcType.UCSGazeVector
+  fullName: SimplifiedEyeTracker.VelocityCalcType.UCSGazeVector
+  nameWithType: VelocityCalcType.UCSGazeVector
