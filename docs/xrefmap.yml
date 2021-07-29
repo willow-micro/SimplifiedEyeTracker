@@ -44,6 +44,45 @@ references:
   isSpec: "True"
   fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker
   nameWithType: EyeTracker.EyeTracker
+- uid: SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels(System.Double,System.Boolean)
+  name: CalcMillimetersFromPixels(Double, Boolean)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_CalcMillimetersFromPixels_System_Double_System_Boolean_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels(System.Double,System.Boolean)
+  fullName: SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels(System.Double, System.Boolean)
+  nameWithType: EyeTracker.CalcMillimetersFromPixels(Double, Boolean)
+- uid: SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels*
+  name: CalcMillimetersFromPixels
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_CalcMillimetersFromPixels_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels
+  nameWithType: EyeTracker.CalcMillimetersFromPixels
+- uid: SimplifiedEyeTracker.EyeTracker.CalcPixelPitch(System.Boolean)
+  name: CalcPixelPitch(Boolean)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_CalcPixelPitch_System_Boolean_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.CalcPixelPitch(System.Boolean)
+  fullName: SimplifiedEyeTracker.EyeTracker.CalcPixelPitch(System.Boolean)
+  nameWithType: EyeTracker.CalcPixelPitch(Boolean)
+- uid: SimplifiedEyeTracker.EyeTracker.CalcPixelPitch*
+  name: CalcPixelPitch
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_CalcPixelPitch_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.CalcPixelPitch
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.CalcPixelPitch
+  nameWithType: EyeTracker.CalcPixelPitch
+- uid: SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters(System.Double,System.Boolean)
+  name: CalcPixelsFromMillimeters(Double, Boolean)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_CalcPixelsFromMillimeters_System_Double_System_Boolean_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters(System.Double,System.Boolean)
+  fullName: SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters(System.Double, System.Boolean)
+  nameWithType: EyeTracker.CalcPixelsFromMillimeters(Double, Boolean)
+- uid: SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters*
+  name: CalcPixelsFromMillimeters
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_CalcPixelsFromMillimeters_
+  commentId: Overload:SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters
+  isSpec: "True"
+  fullName: SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters
+  nameWithType: EyeTracker.CalcPixelsFromMillimeters
 - uid: SimplifiedEyeTracker.EyeTracker.GetDeviceName
   name: GetDeviceName()
   href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker_GetDeviceName
@@ -220,30 +259,30 @@ references:
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.IsRightValid
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.IsRightValid
   nameWithType: SimplifiedGazeDataEventArgs.IsRightValid
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInDeg
-  name: LeftGazeAngularDisplacementInDeg
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeAngularDisplacementInDeg
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInDeg
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInDeg
-  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInDeg
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInRad
-  name: LeftGazeAngularDisplacementInRad
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeAngularDisplacementInRad
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInRad
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInRad
-  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacementInRad
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
+  name: LeftGazeAngularDisplacement
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeAngularDisplacement
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
+  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeAngularDisplacement
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
   name: LeftGazeAngularVelocity
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeAngularVelocity
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
   nameWithType: SimplifiedGazeDataEventArgs.LeftGazeAngularVelocity
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeVector
-  name: LeftGazeVector
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeVector
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeVector
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeVector
-  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeVector
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDifference
+  name: LeftGazeDifference
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeDifference
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDifference
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDifference
+  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeDifference
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDistance
+  name: LeftGazeDistance
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftGazeDistance
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDistance
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftGazeDistance
+  nameWithType: SimplifiedGazeDataEventArgs.LeftGazeDistance
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftX
   name: LeftX
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_LeftX
@@ -256,42 +295,30 @@ references:
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftY
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.LeftY
   nameWithType: SimplifiedGazeDataEventArgs.LeftY
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.PrevLeftGazeVector
-  name: PrevLeftGazeVector
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_PrevLeftGazeVector
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.PrevLeftGazeVector
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.PrevLeftGazeVector
-  nameWithType: SimplifiedGazeDataEventArgs.PrevLeftGazeVector
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.PrevRightGazeVector
-  name: PrevRightGazeVector
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_PrevRightGazeVector
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.PrevRightGazeVector
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.PrevRightGazeVector
-  nameWithType: SimplifiedGazeDataEventArgs.PrevRightGazeVector
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInDeg
-  name: RightGazeAngularDisplacementInDeg
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeAngularDisplacementInDeg
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInDeg
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInDeg
-  nameWithType: SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInDeg
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInRad
-  name: RightGazeAngularDisplacementInRad
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeAngularDisplacementInRad
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInRad
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInRad
-  nameWithType: SimplifiedGazeDataEventArgs.RightGazeAngularDisplacementInRad
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
+  name: RightGazeAngularDisplacement
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeAngularDisplacement
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
+  nameWithType: SimplifiedGazeDataEventArgs.RightGazeAngularDisplacement
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
   name: RightGazeAngularVelocity
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeAngularVelocity
   commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
   fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
   nameWithType: SimplifiedGazeDataEventArgs.RightGazeAngularVelocity
-- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeVector
-  name: RightGazeVector
-  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeVector
-  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeVector
-  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeVector
-  nameWithType: SimplifiedGazeDataEventArgs.RightGazeVector
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDifference
+  name: RightGazeDifference
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeDifference
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDifference
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDifference
+  nameWithType: SimplifiedGazeDataEventArgs.RightGazeDifference
+- uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDistance
+  name: RightGazeDistance
+  href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightGazeDistance
+  commentId: F:SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDistance
+  fullName: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightGazeDistance
+  nameWithType: SimplifiedGazeDataEventArgs.RightGazeDistance
 - uid: SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.RightX
   name: RightX
   href: api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html#SimplifiedEyeTracker_SimplifiedGazeDataEventArgs_RightX

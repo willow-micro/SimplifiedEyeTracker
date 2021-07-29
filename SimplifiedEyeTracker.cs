@@ -85,49 +85,41 @@ namespace SimplifiedEyeTracker
         /// </summary>
         public bool IsRightValid;
         /// <summary>
-        /// [Left Eye] Gaze Vector from Gaze Origin to Gaze Point
+        /// [Left Eye] Angular displacement in degrees
         /// </summary>
-        public Vector3 LeftGazeVector;
+        public double LeftGazeAngularDisplacement;
         /// <summary>
-        /// [Right Eye] Gaze Vector from Gaze Origin to Gaze Point
+        /// [Right Eye] Angular displacement in degrees
         /// </summary>
-        public Vector3 RightGazeVector;
+        public double RightGazeAngularDisplacement;
         /// <summary>
-        /// [Left Eye] Previous Gaze Vector from Gaze Origin to Gaze Point
-        /// </summary>
-        public Vector3 PrevLeftGazeVector;
-        /// <summary>
-        /// [Right Eye] Previous Gaze Vector from Gaze Origin to Gaze Point
-        /// </summary>
-        public Vector3 PrevRightGazeVector;
-        /// <summary>
-        /// [Left Eye] Angular displacement between previous gaze vector and latest gaze vector in degrees
-        /// </summary>
-        public Double LeftGazeAngularDisplacementInDeg;
-        /// <summary>
-        /// [Right Eye] Angular displacement between previous gaze vector and latest gaze vector in degrees
-        /// </summary>
-        public Double RightGazeAngularDisplacementInDeg;
-        /// <summary>
-        /// [Left Eye] Angular displacement between previous gaze vector and latest gaze vector in radians
-        /// </summary>
-        public Double LeftGazeAngularDisplacementInRad;
-        /// <summary>
-        /// [Right Eye] Angular displacement between previous gaze vector and latest gaze vector in radians
-        /// </summary>
-        public Double RightGazeAngularDisplacementInRad;
-        /// <summary>
-        /// Interval between previous system time stamp and latest system time stamp
+        /// Interval between the previous system time stamp and the latest system time stamp
         /// </summary>
         public int SystemTimeStampInterval;
         /// <summary>
         /// Angular Velocity for Left Gaze in deg/s
         /// </summary>
-        public Double LeftGazeAngularVelocity;
+        public double LeftGazeAngularVelocity;
         /// <summary>
         /// Angular Velocity for Right Gaze in deg/s
         /// </summary>
-        public Double RightGazeAngularVelocity;
+        public double RightGazeAngularVelocity;
+        /// <summary>
+        /// [Left Eye] Gaze Point Difference in millimeters
+        /// </summary>
+        public double LeftGazeDifference;
+        /// <summary>
+        /// [Right Eye] Gaze Point Difference in millimeters
+        /// </summary>
+        public double RightGazeDifference;
+        /// <summary>
+        /// [Left Eye] Distance between the gaze origin to the gaze point
+        /// </summary>
+        public double LeftGazeDistance;
+        /// <summary>
+        /// [Right Eye] Distance between the gaze origin to the gaze point
+        /// </summary>
+        public double RightGazeDistance;
     }
 
     /// <summary>
@@ -147,15 +139,31 @@ namespace SimplifiedEyeTracker
         /// Screen Height
         /// </summary>
         private readonly double screenHeight;
-
         /// <summary>
-        /// [Left Eye] Previous Gaze Vector (from Gaze Origin to Gaze Point)
+        /// Horizontal Pixel Pitch
         /// </summary>
-        private Vector3 prevLeftGazeUCSVector = new Vector3(0.0f, 0.0f, 0.0f);
+        private readonly double horizontalPixelPitch;
         /// <summary>
-        /// [Right Eye] Previous Gaze Vector (from Gaze Origin to Gaze Point)
+        /// Vertical Pixel Pitch
         /// </summary>
-        private Vector3 prevRightGazeUCSVector = new Vector3(0.0f, 0.0f, 0.0f);
+        private readonly double verticalPixelPitch;
+        
+        /// <summary>
+        /// [Left Eye] Previous gaze point X value by millimeters
+        /// </summary>
+        private double prevLeftGazePointX = 0.0;
+        /// <summary>
+        /// [Left Eye] Previous gaze point Y value by millimeters
+        /// </summary>
+        private double prevLeftGazePointY = 0.0;
+        /// <summary>
+        /// [Right Eye] Previous gaze point X value by millimeters
+        /// </summary>
+        private double prevRightGazePointX = 0.0;
+        /// <summary>
+        /// [Right Eye] Previous gaze point Y value by millimeters
+        /// </summary>
+        private double prevRightGazePointY = 0.0;
         /// <summary>
         /// Previous System Time Stamp [us]
         /// </summary>
@@ -188,6 +196,8 @@ namespace SimplifiedEyeTracker
                 this.device = eyeTrackers[0];
                 this.screenWidth = 0.0;
                 this.screenHeight = 0.0;
+                this.horizontalPixelPitch = 0.0;
+                this.verticalPixelPitch = 0.0;
             }
             else
             {
@@ -213,6 +223,8 @@ namespace SimplifiedEyeTracker
                 this.device = eyeTrackers[0];
                 this.screenWidth = screenWidth;
                 this.screenHeight = screenHeight;
+                this.horizontalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Width / screenWidth);
+                this.verticalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Height / screenHeight);
             }
             else
             {
@@ -241,6 +253,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = 0.0;
                                 this.screenHeight = 0.0;
+                                this.horizontalPixelPitch = 0.0;
+                                this.verticalPixelPitch = 0.0;
                                 initialized = true;
                                 break;
                             }
@@ -258,6 +272,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = 0.0;
                                 this.screenHeight = 0.0;
+                                this.horizontalPixelPitch = 0.0;
+                                this.verticalPixelPitch = 0.0;
                                 initialized = true;
                                 break;
                             }
@@ -275,6 +291,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = 0.0;
                                 this.screenHeight = 0.0;
+                                this.horizontalPixelPitch = 0.0;
+                                this.verticalPixelPitch = 0.0;
                                 initialized = true;
                                 break;
                             }
@@ -292,6 +310,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = 0.0;
                                 this.screenHeight = 0.0;
+                                this.horizontalPixelPitch = 0.0;
+                                this.verticalPixelPitch = 0.0;
                                 initialized = true;
                                 break;
                             }
@@ -309,6 +329,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = 0.0;
                                 this.screenHeight = 0.0;
+                                this.horizontalPixelPitch = 0.0;
+                                this.verticalPixelPitch = 0.0;
                                 initialized = true;
                                 break;
                             }
@@ -354,6 +376,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = screenWidth;
                                 this.screenHeight = screenHeight;
+                                this.horizontalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Width / screenWidth);
+                                this.verticalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Height / screenHeight);
                                 initialized = true;
                                 break;
                             }
@@ -371,6 +395,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = screenWidth;
                                 this.screenHeight = screenHeight;
+                                this.horizontalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Width / screenWidth);
+                                this.verticalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Height / screenHeight);
                                 initialized = true;
                                 break;
                             }
@@ -388,6 +414,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = screenWidth;
                                 this.screenHeight = screenHeight;
+                                this.horizontalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Width / screenWidth);
+                                this.verticalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Height / screenHeight);
                                 initialized = true;
                                 break;
                             }
@@ -405,6 +433,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = screenWidth;
                                 this.screenHeight = screenHeight;
+                                this.horizontalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Width / screenWidth);
+                                this.verticalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Height / screenHeight);
                                 initialized = true;
                                 break;
                             }
@@ -422,6 +452,8 @@ namespace SimplifiedEyeTracker
                                 this.device = eyeTracker;
                                 this.screenWidth = screenWidth;
                                 this.screenHeight = screenHeight;
+                                this.horizontalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Width / screenWidth);
+                                this.verticalPixelPitch = (double)(eyeTrackers[0].GetDisplayArea().Height / screenHeight);
                                 initialized = true;
                                 break;
                             }
@@ -493,26 +525,24 @@ namespace SimplifiedEyeTracker
         /// Calculate the pixel pitch. To use this method, you must specify a screen dimension in the constructor.
         /// </summary>
         /// <param name="calcHorizontalPitch">If false, calculate a vertical pixel pitch</param>
-        /// <returns>A horizontal or vertical pixel pitch</returns>
-        /// <exception cref="InvalidOperationException">Screen dimensions are not available (You must set in the constructor).</exception>
-        /// <exception cref="InvalidOperationException">Eye tracker not found.</exception>
+        /// <returns>A horizontal or vertical pixel pitch or NaN</returns>
         public double CalcPixelPitch(bool calcHorizontalPitch = true)
         {
             if (this.screenWidth <= 0.0 && this.screenHeight <= 0.0)
             {
-                throw new InvalidOperationException("Screen dimensions are not available.");
+                return double.NaN;
             } 
             else if (this.device == null)
             {
-                throw new InvalidOperationException("Eye tracker not found.");
+                return double.NaN;
             }
             if (calcHorizontalPitch)
             {
-                return (double)(this.device.GetDisplayArea().Width / this.screenWidth);
+                return this.horizontalPixelPitch;
             }
             else
             {
-                return (double)(this.device.GetDisplayArea().Height / this.screenHeight);
+                return this.verticalPixelPitch;
             }
         }
 
@@ -521,29 +551,25 @@ namespace SimplifiedEyeTracker
         /// </summary>
         /// <param name="millimeters">Length in millimeters</param>
         /// <param name="useHorizontalPitch">if false, use vertical pixel pitch</param>
-        /// <returns>pixels (based on the dimensions set in the constructor)</returns>
-        /// <exception cref="InvalidOperationException">Screen dimensions are not available (You must set in the constructor).</exception>
-        /// <exception cref="InvalidOperationException">Eye tracker not found.</exception>
+        /// <returns>pixels (based on the dimensions set in the constructor) or NaN</returns>
         public double CalcPixelsFromMillimeters(double millimeters, bool useHorizontalPitch = true)
         {
             if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
             {
-                throw new InvalidOperationException("Screen dimensions are not available.");
+                return double.NaN;
             }
             else if (this.device == null)
             {
-                throw new InvalidOperationException("Eye tracker not found.");
+                return double.NaN;
             }
 
             if (useHorizontalPitch)
             {
-                double hpp = (double)(this.device.GetDisplayArea().Width / this.screenWidth);
-                return millimeters / hpp;
+                return millimeters / this.horizontalPixelPitch;
             }
             else
             {
-                double vpp = (double)(this.device.GetDisplayArea().Height / this.screenHeight);
-                return millimeters / vpp;
+                return millimeters / this.verticalPixelPitch;
             }
         }
 
@@ -552,29 +578,25 @@ namespace SimplifiedEyeTracker
         /// </summary>
         /// <param name="pixels">Length in pixels</param>
         /// <param name="useHorizontalPitch">if false, use vertical pixel pitch</param>
-        /// <returns>millimeters (dependent on the dimensions set in the constructor)</returns>
-        /// <exception cref="InvalidOperationException">Screen dimensions are not available (You must set in the constructor).</exception>
-        /// <exception cref="InvalidOperationException">Eye tracker not found.</exception>
+        /// <returns>millimeters (dependent on the dimensions set in the constructor) or NaN</returns>
         public double CalcMillimetersFromPixels(double pixels, bool useHorizontalPitch = true)
         {
             if (this.screenWidth <= 0.0 || this.screenHeight <= 0.0)
             {
-                throw new InvalidOperationException("Screen dimensions are not available.");
+                return double.NaN;
             }
             else if (this.device == null)
             {
-                throw new InvalidOperationException("Eye tracker not found.");
+                return double.NaN;
             }
 
             if (useHorizontalPitch)
             {
-                double hpp = (double)(this.device.GetDisplayArea().Width / this.screenWidth);
-                return pixels * hpp;
+                return pixels * this.horizontalPixelPitch;
             }
             else
             {
-                double vpp = (double)(this.device.GetDisplayArea().Height / this.screenHeight);
-                return pixels * vpp;
+                return pixels * this.verticalPixelPitch;
             }
         }
 
@@ -625,23 +647,34 @@ namespace SimplifiedEyeTracker
             Vector3 rightGazePointUCSVector = new Vector3(e.RightEye.GazePoint.PositionInUserCoordinates.X, e.RightEye.GazePoint.PositionInUserCoordinates.Y, e.RightEye.GazePoint.PositionInUserCoordinates.Z);
             Vector3 leftGazeOriginUCSVector = new Vector3(e.LeftEye.GazeOrigin.PositionInUserCoordinates.X, e.LeftEye.GazeOrigin.PositionInUserCoordinates.Y, e.LeftEye.GazeOrigin.PositionInUserCoordinates.Z);
             Vector3 rightGazeOriginUCSVector = new Vector3(e.RightEye.GazeOrigin.PositionInUserCoordinates.X, e.RightEye.GazeOrigin.PositionInUserCoordinates.Y, e.RightEye.GazeOrigin.PositionInUserCoordinates.Z);
-            Vector3 leftGazeUCSVector = Vector3.Subtract(leftGazePointUCSVector, leftGazeOriginUCSVector);
-            Vector3 rightGazeUCSVector = Vector3.Subtract(rightGazePointUCSVector, rightGazeOriginUCSVector);
 
-            Double leftCosineTheta = (Double)(Vector3.Dot(this.prevLeftGazeUCSVector, leftGazeUCSVector) / (this.prevLeftGazeUCSVector.Length() * leftGazeUCSVector.Length()));
-            Double leftThetaRad = Math.Acos(leftCosineTheta);
-            Double leftThetaDeg = leftThetaRad * 180.0 / Math.PI;
+            double leftDistanceFromOriginToPoint = (double)Vector3.Distance(leftGazeOriginUCSVector, leftGazePointUCSVector);
+            double rightDistanceFromOriginToPoint = (double)Vector3.Distance(rightGazeOriginUCSVector, rightGazePointUCSVector);
 
-            Double rightCosineTheta = (Double)(Vector3.Dot(this.prevRightGazeUCSVector, rightGazeUCSVector) / (this.prevRightGazeUCSVector.Length() * rightGazeUCSVector.Length()));
-            Double rightThetaRad = Math.Acos(rightCosineTheta);
-            Double rightThetaDeg = rightThetaRad * 180.0 / Math.PI;
+            double leftGazePointXInPixels = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
+            double leftGazePointYInPixels = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+            double rightGazePointXInPixels = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
+            double rightGazePointYInPixels = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+            
+            double leftGazePointXInMillimeters = this.CalcMillimetersFromPixels(leftGazePointXInPixels);
+            double leftGazePointYInMillimeters = this.CalcMillimetersFromPixels(leftGazePointYInPixels);
+            double rightGazePointXInMillimeters = this.CalcMillimetersFromPixels(rightGazePointXInPixels);
+            double rightGazePointYInMillimeters = this.CalcMillimetersFromPixels(rightGazePointYInPixels);
 
-            Double leftAngularVelocity = leftThetaDeg * 1000000 / systemTimeStampInterval;
+            double leftGazePointDifference = Math.Sqrt(Math.Pow(leftGazePointXInMillimeters - prevLeftGazePointX, 2) + Math.Pow(leftGazePointYInMillimeters - prevLeftGazePointY, 2));
+            double rightGazePointDifference = Math.Sqrt(Math.Pow(rightGazePointXInMillimeters - prevRightGazePointX, 2) + Math.Pow(rightGazePointYInMillimeters - prevRightGazePointY, 2));
+
+            double leftThetaRad = Math.Atan2(leftGazePointDifference, leftDistanceFromOriginToPoint);
+            double leftThetaDeg = (leftThetaRad == double.NaN) ? double.NaN : leftThetaRad * 180.0 / Math.PI;
+            double rightThetaRad = Math.Atan2(rightGazePointDifference, rightDistanceFromOriginToPoint);
+            double rightThetaDeg = (rightThetaRad == double.NaN) ? double.NaN : rightThetaRad * 180.0 / Math.PI;
+
+            double leftAngularVelocity = leftThetaDeg * 1000000 / systemTimeStampInterval;
             if (leftAngularVelocity == double.NaN)
             {
                 isLeftValid = false;
             }
-            Double rightAngularVelocity = rightThetaDeg * 1000000 / systemTimeStampInterval;
+            double rightAngularVelocity = rightThetaDeg * 1000000 / systemTimeStampInterval;
             if (rightAngularVelocity == double.NaN)
             {
                 isRightValid = false;
@@ -653,23 +686,21 @@ namespace SimplifiedEyeTracker
                 {
                     DeviceTimeStamp = e.DeviceTimeStamp,
                     SystemTimeStamp = e.SystemTimeStamp,
-                    LeftX = Convert.ToDouble(e.LeftEye.GazePoint.PositionOnDisplayArea.X),
-                    RightX = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.X),
-                    LeftY = Convert.ToDouble(e.LeftEye.GazePoint.PositionOnDisplayArea.Y),
-                    RightY = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.Y),
+                    LeftX = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.X),
+                    RightX = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.X),
+                    LeftY = (double)(e.LeftEye.GazePoint.PositionOnDisplayArea.Y),
+                    RightY = (double)(e.RightEye.GazePoint.PositionOnDisplayArea.Y),
                     IsLeftValid = isLeftValid,
                     IsRightValid = isRightValid,
-                    LeftGazeVector = leftGazeUCSVector,
-                    RightGazeVector = rightGazeUCSVector,
-                    PrevLeftGazeVector = prevLeftGazeUCSVector,
-                    PrevRightGazeVector = prevRightGazeUCSVector,
-                    LeftGazeAngularDisplacementInDeg = leftThetaDeg,
-                    LeftGazeAngularDisplacementInRad = leftThetaRad,
-                    RightGazeAngularDisplacementInDeg = rightThetaDeg,
-                    RightGazeAngularDisplacementInRad = rightThetaRad,
+                    LeftGazeAngularDisplacement = leftThetaDeg,
+                    RightGazeAngularDisplacement = rightThetaDeg,
                     SystemTimeStampInterval = systemTimeStampInterval,
                     LeftGazeAngularVelocity = leftAngularVelocity,
-                    RightGazeAngularVelocity = rightAngularVelocity
+                    RightGazeAngularVelocity = rightAngularVelocity,
+                    LeftGazeDifference = leftGazePointDifference,
+                    RightGazeDifference = rightGazePointDifference,
+                    LeftGazeDistance = leftDistanceFromOriginToPoint,
+                    RightGazeDistance = rightDistanceFromOriginToPoint
                 };
                 this.OnGazeData?.Invoke(this, gazeData);
             }
@@ -679,29 +710,30 @@ namespace SimplifiedEyeTracker
                 {
                     DeviceTimeStamp = e.DeviceTimeStamp,
                     SystemTimeStamp = e.SystemTimeStamp,
-                    LeftX = Convert.ToDouble(e.LeftEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth,
-                    RightX = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth,
-                    LeftY = Convert.ToDouble(e.LeftEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight,
-                    RightY = Convert.ToDouble(e.RightEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight,
+                    LeftX = (double)((e.LeftEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth),
+                    RightX = (double)((e.RightEye.GazePoint.PositionOnDisplayArea.X) * this.screenWidth),
+                    LeftY = (double)((e.LeftEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight),
+                    RightY = (double)((e.RightEye.GazePoint.PositionOnDisplayArea.Y) * this.screenHeight),
                     IsLeftValid = isLeftValid,
                     IsRightValid = isRightValid,
-                    LeftGazeVector = leftGazeUCSVector,
-                    RightGazeVector = rightGazeUCSVector,
-                    PrevLeftGazeVector = prevLeftGazeUCSVector,
-                    PrevRightGazeVector = prevRightGazeUCSVector,
-                    LeftGazeAngularDisplacementInDeg = leftThetaDeg,
-                    LeftGazeAngularDisplacementInRad = leftThetaRad,
-                    RightGazeAngularDisplacementInDeg = rightThetaDeg,
-                    RightGazeAngularDisplacementInRad = rightThetaRad,
+                    LeftGazeAngularDisplacement = leftThetaDeg,
+                    RightGazeAngularDisplacement = rightThetaDeg,
                     SystemTimeStampInterval = systemTimeStampInterval,
                     LeftGazeAngularVelocity = leftAngularVelocity,
-                    RightGazeAngularVelocity = rightAngularVelocity
+                    RightGazeAngularVelocity = rightAngularVelocity,
+                    LeftGazeDifference = leftGazePointDifference,
+                    RightGazeDifference = rightGazePointDifference,
+                    LeftGazeDistance = leftDistanceFromOriginToPoint,
+                    RightGazeDistance = rightDistanceFromOriginToPoint
                 };
                 this.OnGazeData?.Invoke(this, gazeDataUsingScreenDimension);
             }
 
-            this.prevLeftGazeUCSVector = leftGazeUCSVector;
-            this.prevRightGazeUCSVector = rightGazeUCSVector;
+            this.prevLeftGazePointX = this.CalcMillimetersFromPixels(e.LeftEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
+            this.prevLeftGazePointY = this.CalcMillimetersFromPixels(e.LeftEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+            this.prevRightGazePointX = this.CalcMillimetersFromPixels(e.RightEye.GazePoint.PositionOnDisplayArea.X * this.screenWidth);
+            this.prevRightGazePointY = this.CalcMillimetersFromPixels(e.RightEye.GazePoint.PositionOnDisplayArea.Y * this.screenHeight);
+
             this.prevSystemTimeStamp = e.SystemTimeStamp;
         }
     }
