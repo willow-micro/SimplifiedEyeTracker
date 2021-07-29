@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "pXMsSicFRVAeIjXI1Qtq5cqQ7DhC0JG0bOb2Aahbd2k="
+          "hash": "D5Q07mAUzKRU4MC12NMkxWJu7+oTUrOPFS/q+HIwCEk="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "AZ8AhBYts1lXEaHIet96dgQcO/LD4PzWaMlp6NZUUY0="
+          "hash": "urWXvQ2VA0NjBpUEOdIv5mJJBzqQDM+upqQR7igNPWA="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "as7FI3xXqxFgDXk2os2sV15OMzSBcQ/XNIXnuD9Y3w8="
+          "hash": "N8JPYKnNqn2XQUvhV0w/01XeyDpP+Mef4bF8F4M9qPE="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,19 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "ukZUVqU/0Tu+VeS/KR1eBukIl3R/2bV5Xf6Lii0qoKg="
+          "hash": "VTT9w2nNEQBO3z8V9ZSbI6eAZoUggL4TZ8j47/wKdGg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.EyeMovementType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.EyeMovementType.html",
+          "hash": "f3eYCI+tg3j9MH2OCWJiUnA1xjE82/4XCTyciR++EhU="
         }
       },
       "is_incremental": false,
@@ -69,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.EyeTracker.SimplifiedGazeDataEventHandler.html",
-          "hash": "gM7RYaRiMrzqu1OAFJ8m5N60K1l9v0dtbS0TFXkS2R8="
+          "hash": "yKFB6k8wjvqnRXBwYg27tllO63ThE6JfV8QUWFOnOCs="
         }
       },
       "is_incremental": false,
@@ -81,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.EyeTracker.html",
-          "hash": "CeGo0uKBeK7tRk4n15DcVG+z4dx0pnAL+QgBgTu55X0="
+          "hash": "n5JAD5NltYDH25kJlsfop4w1+9syFEbi2UKsawvaVhA="
         }
       },
       "is_incremental": false,
@@ -93,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.EyeTrackerIdentification.html",
-          "hash": "fnp+dbCvAxEHGfgXPM4xhiUt/6LYh2+P2jHnx+cpX3U="
+          "hash": "y85I4nFAwG49qQU0WMcQRldHgyFTJDH4/dBZPkLUrBU="
         }
       },
       "is_incremental": false,
@@ -105,7 +117,19 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.SimplifiedGazeDataEventArgs.html",
-          "hash": "ezCKr2ONzaZWg1CuOb9KahxF+Tt950c7i7EM0nX0H8g="
+          "hash": "slci19ylDSbp5gpVJEuRliHwXlqpvxESWJtXDH2R/08="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/SimplifiedEyeTracker.VelocityCalcType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimplifiedEyeTracker.VelocityCalcType.html",
+          "hash": "R+5gg6h517t9oHwx13kBVxWb6YadtQaWk/P0+MqOlog="
         }
       },
       "is_incremental": false,
@@ -117,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SimplifiedEyeTracker.html",
-          "hash": "AmZMQ6O4TjCobt/GTQvNsUJ6GxjSI7vyk8/IlFZLgBU="
+          "hash": "b64qCaXj4mh677o2yP1Na8mgGW+ZG1EruZnu3dTVIg0="
         }
       },
       "is_incremental": false,
@@ -129,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "lrEtEOZsSp3HxpVdLltyW45/Pvgr9onU2+KkJ8X+4Uo="
+          "hash": "/iasw0QbOTOZyjLgbKq2ml1YODJ/oEDURohLxRE2R5o="
         }
       },
       "is_incremental": false,
@@ -168,7 +192,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 5,
+          "total_file_count": 7,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
