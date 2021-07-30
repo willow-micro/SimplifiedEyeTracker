@@ -1,0 +1,31 @@
+name: 'Manage Issues for Project'
+
+on: [issues]
+
+jobs:
+  manage-issues-for-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move issues which have a Available label to the project board column called To do
+        if: github.event.action == 'labeled' && github.event.label.name == format('Status{0} Available', ':')
+        uses: alex-page/github-project-automation-plus@master
+        with:
+          project: Manage Progress for SimplifiedEyeTracker
+          column: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Move issues which have a In Progress label to the project board column called To do
+        if: github.event.action == 'labeled' && github.event.label.name == format('Status{0} In Progress', ':')
+        uses: alex-page/github-project-automation-plus@master
+        with:
+          project: Manage Progress for SimplifiedEyeTracker
+          column: In progress
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Move issues which have a Completed label to the project board column called To do
+        if: github.event.action == 'labeled' && github.event.label.name == format('Status{0} Completed', ':')
+        uses: alex-page/github-project-automation-plus@master
+        with:
+          project: Manage Progress for SimplifiedEyeTracker
+          column: Done
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
