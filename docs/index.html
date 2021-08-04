@@ -134,7 +134,7 @@ namespace Example
         {
             Dispatcher.Invoke(() =&gt;
             {
-                if (e.IsLeftValid &amp;&amp; e.LeftX &gt;= 0.0 &amp;&amp; e.LeftX &lt;= this.primaryScreenWidth &amp;&amp; e.LeftY &gt;= 0.0 &amp;&amp; e.LeftY &lt;= this.this.primaryScreenHeight)
+                if (e.IsLeftValid &amp;&amp; e.LeftEyeMovementType == EyeMovementType.EyeMovementType.Fixation &amp;&amp; e.LeftX &gt;= 0.0 &amp;&amp; e.LeftX &lt;= this.eyeTracker.GetScreenWidthInPixels() &amp;&amp; e.LeftY &gt;= 0.0 &amp;&amp; e.LeftY &lt;= this.eyeTracker.GetScreenHeightInPixels())
                 {
                     Debug.Print($&quot;DeviceTimeStamp: {e.DeviceTimeStamp}, SystemTimeStamp: {e.SystemTimeStamp}&quot;);
                     Debug.Print($&quot;X: {e.LeftX}, Y: {e.LeftY}&quot;);

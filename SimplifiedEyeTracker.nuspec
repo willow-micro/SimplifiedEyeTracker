@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <title>$title$</title>
     <authors>T.Kawamura</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<license type="expression">MIT</license>
     <projectUrl>https://github.com/willow-micro/SimplifiedEyeTracker</projectUrl>
     <description>A Simple Wrapper Library for the Tobii.Research.x64</description>
-    <releaseNotes>[Pre-release] Alpha 0.0.3</releaseNotes>
+    <releaseNotes>[Pre-release] Alpha 0.0.4</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags></tags>
   </metadata>
