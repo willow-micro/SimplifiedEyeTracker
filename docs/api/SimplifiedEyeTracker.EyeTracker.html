@@ -115,19 +115,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(SimplifiedEyeTracker.EyeTrackerIdentification%2CSystem.String%2CSystem.Double%2CSystem.Double%2CSimplifiedEyeTracker.VelocityCalcType%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(SimplifiedEyeTracker.EyeTrackerIdentification%2CSystem.String%2CSystem.Double%2CSystem.Double%2CSimplifiedEyeTracker.VelocityCalcType%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L134">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L150">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker__ctor_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor*"></a>
-  <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)">EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32)</h4>
+  <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_System_Int32_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32,System.Int32)">EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Overloaded constructor. Use the eye tracker which has <code>identificationString</code> for <code>identificationType</code> in the <code>Tobii.Research.EyeTrackerCollection</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30)</code></pre>
+    <pre><code class="lang-csharp hljs">public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30, int fixationDurationThresh = 150)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -172,7 +172,13 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">fixationVelocityThresh</span></td>
-        <td><p>Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade</p>
+        <td><p>Angular velocity threshold [rad/s] for classifying eye movements, saccade or not a saccade</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">fixationDurationThresh</span></td>
+        <td><p>Time duration threshold [ms] for classifying eye movements, not a saccade or fixation</p>
 </td>
       </tr>
     </tbody>
@@ -200,19 +206,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(System.Double%2CSystem.Double%2CSimplifiedEyeTracker.VelocityCalcType%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.%23ctor(System.Double%2CSystem.Double%2CSimplifiedEyeTracker.VelocityCalcType%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L100">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L112">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker__ctor_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor*"></a>
-  <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)">EyeTracker(Double, Double, VelocityCalcType, Int32)</h4>
+  <h4 id="SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_System_Int32_" data-uid="SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32,System.Int32)">EyeTracker(Double, Double, VelocityCalcType, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Constructor. Use the first eye tracker in the <code>Tobii.Research.EyeTrackerCollection</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EyeTracker(double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30)</code></pre>
+    <pre><code class="lang-csharp hljs">public EyeTracker(double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30, int fixationDurationThresh = 150)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -245,7 +251,13 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">fixationVelocityThresh</span></td>
-        <td><p>Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade</p>
+        <td><p>Angular velocity threshold [rad/s] for classifying eye movements, saccade or not a saccade</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">fixationDurationThresh</span></td>
+        <td><p>Time duration threshold [ms] for classifying eye movements, not a saccade or fixation</p>
 </td>
       </tr>
     </tbody>
@@ -278,7 +290,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_CalcMillimetersFromPixels_System_Double_System_Boolean_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels(System.Double%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L396">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L415">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_CalcMillimetersFromPixels_" data-uid="SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_CalcMillimetersFromPixels_System_Double_System_Boolean_" data-uid="SimplifiedEyeTracker.EyeTracker.CalcMillimetersFromPixels(System.Double,System.Boolean)">CalcMillimetersFromPixels(Double, Boolean)</h4>
@@ -334,7 +346,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_CalcPixelPitch_System_Boolean_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.CalcPixelPitch(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L351">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L370">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_CalcPixelPitch_" data-uid="SimplifiedEyeTracker.EyeTracker.CalcPixelPitch*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_CalcPixelPitch_System_Boolean_" data-uid="SimplifiedEyeTracker.EyeTracker.CalcPixelPitch(System.Boolean)">CalcPixelPitch(Boolean)</h4>
@@ -384,7 +396,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_CalcPixelsFromMillimeters_System_Double_System_Boolean_.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters(System.Double%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L373">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L392">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_CalcPixelsFromMillimeters_" data-uid="SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_CalcPixelsFromMillimeters_System_Double_System_Boolean_" data-uid="SimplifiedEyeTracker.EyeTracker.CalcPixelsFromMillimeters(System.Double,System.Boolean)">CalcPixelsFromMillimeters(Double, Boolean)</h4>
@@ -440,7 +452,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetDeviceName.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetDeviceName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L256">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L275">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetDeviceName_" data-uid="SimplifiedEyeTracker.EyeTracker.GetDeviceName*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetDeviceName" data-uid="SimplifiedEyeTracker.EyeTracker.GetDeviceName">GetDeviceName()</h4>
@@ -472,7 +484,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetDisplayArea.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetDisplayArea%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L297">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L316">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetDisplayArea_" data-uid="SimplifiedEyeTracker.EyeTracker.GetDisplayArea*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetDisplayArea" data-uid="SimplifiedEyeTracker.EyeTracker.GetDisplayArea">GetDisplayArea()</h4>
@@ -504,7 +516,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L280">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L299">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion_" data-uid="SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetFirmwareVersion" data-uid="SimplifiedEyeTracker.EyeTracker.GetFirmwareVersion">GetFirmwareVersion()</h4>
@@ -536,7 +548,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetModel.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetModel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L272">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L291">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetModel_" data-uid="SimplifiedEyeTracker.EyeTracker.GetModel*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetModel" data-uid="SimplifiedEyeTracker.EyeTracker.GetModel">GetModel()</h4>
@@ -568,7 +580,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetRuntimeVersion.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L288">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L307">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetRuntimeVersion_" data-uid="SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetRuntimeVersion" data-uid="SimplifiedEyeTracker.EyeTracker.GetRuntimeVersion">GetRuntimeVersion()</h4>
@@ -600,7 +612,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetScreenHeightInMillimeters.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L337">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L356">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetScreenHeightInMillimeters_" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetScreenHeightInMillimeters" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenHeightInMillimeters">GetScreenHeightInMillimeters()</h4>
@@ -632,7 +644,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetScreenHeightInPixels.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L315">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L334">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetScreenHeightInPixels_" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetScreenHeightInPixels" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenHeightInPixels">GetScreenHeightInPixels()</h4>
@@ -664,7 +676,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetScreenWidthInMillimeters.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L324">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L343">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetScreenWidthInMillimeters_" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetScreenWidthInMillimeters" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenWidthInMillimeters">GetScreenWidthInMillimeters()</h4>
@@ -696,7 +708,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetScreenWidthInPixels.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L306">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L325">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetScreenWidthInPixels_" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetScreenWidthInPixels" data-uid="SimplifiedEyeTracker.EyeTracker.GetScreenWidthInPixels">GetScreenWidthInPixels()</h4>
@@ -728,7 +740,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_GetSerialNumber.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.GetSerialNumber%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L264">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L283">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_GetSerialNumber_" data-uid="SimplifiedEyeTracker.EyeTracker.GetSerialNumber*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_GetSerialNumber" data-uid="SimplifiedEyeTracker.EyeTracker.GetSerialNumber">GetSerialNumber()</h4>
@@ -760,7 +772,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_StartReceivingGazeData.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.StartReceivingGazeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L417">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L436">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_StartReceivingGazeData_" data-uid="SimplifiedEyeTracker.EyeTracker.StartReceivingGazeData*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_StartReceivingGazeData" data-uid="SimplifiedEyeTracker.EyeTracker.StartReceivingGazeData">StartReceivingGazeData()</h4>
@@ -792,7 +804,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_StopReceivingGazeData.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.StopReceivingGazeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L432">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L451">View Source</a>
   </span>
   <a id="SimplifiedEyeTracker_EyeTracker_StopReceivingGazeData_" data-uid="SimplifiedEyeTracker.EyeTracker.StopReceivingGazeData*"></a>
   <h4 id="SimplifiedEyeTracker_EyeTracker_StopReceivingGazeData" data-uid="SimplifiedEyeTracker.EyeTracker.StopReceivingGazeData">StopReceivingGazeData()</h4>
@@ -826,7 +838,7 @@
     <a href="https://github.com/willow-micro/SimplifiedEyeTracker/new/feature/fixationDetection/apiSpec/new?filename=SimplifiedEyeTracker_EyeTracker_OnGazeData.md&amp;value=---%0Auid%3A%20SimplifiedEyeTracker.EyeTracker.OnGazeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L88">View Source</a>
+    <a href="https://github.com/willow-micro/SimplifiedEyeTracker/blob/feature/fixationDetection/SimplifiedEyeTracker.cs/#L99">View Source</a>
   </span>
   <h4 id="SimplifiedEyeTracker_EyeTracker_OnGazeData" data-uid="SimplifiedEyeTracker.EyeTracker.OnGazeData">OnGazeData</h4>
   <div class="markdown level1 summary"><p>EventHandler for make gaze data available from user</p>

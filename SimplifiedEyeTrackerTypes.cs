@@ -17,7 +17,7 @@ namespace SimplifiedEyeTracker
     /// <summary>
     /// Enum to specify eyetrackers at overloaded <c>EyeTracker</c> constructor.
     /// </summary>
-    /// <seealso cref="SimplifiedEyeTracker.EyeTracker(EyeTrackerIdentification, System.String, double, double, SimplifiedEyeTracker.VelocityCalcType, int)"/>
+    /// <seealso cref="SimplifiedEyeTracker.EyeTracker(EyeTrackerIdentification, System.String, double, double, SimplifiedEyeTracker.VelocityCalcType, int, int)"/>
     public enum EyeTrackerIdentification
     {
         /// <summary>
@@ -67,6 +67,10 @@ namespace SimplifiedEyeTracker
         /// </summary>
         Fixation,
         /// <summary>
+        /// Not a saccade, not a fixation
+        /// </summary>
+        NotASaccade,
+        /// <summary>
         /// Saccade
         /// </summary>
         Saccade,
@@ -110,11 +114,11 @@ namespace SimplifiedEyeTracker
         /// </summary>
         public double RightY;
         /// <summary>
-        /// If the Left eye is closed, it becomes false.
+        /// If the Left eye is closed or couldn't get valid data, it becomes false.
         /// </summary>
         public bool IsLeftValid;
         /// <summary>
-        /// If the Right eye is closed, it becomes false.
+        /// If the Right eye is closed or couldn't get valid data, it becomes false.
         /// </summary>
         public bool IsRightValid;
         /// <summary>
@@ -130,11 +134,11 @@ namespace SimplifiedEyeTracker
         /// </summary>
         public double RightGazeAngularVelocity;
         /// <summary>
-        /// [Left Eye] Movement Type (Fixation or Saccade)
+        /// [Left Eye] Movement Type (Saccade, Not A Saccade, Fixation, Unknown)
         /// </summary>
         public EyeMovementType LeftEyeMovementType;
         /// <summary>
-        /// [Left Eye] Movement Type (Fixation or Saccade)
+        /// [Left Eye] Movement Type (Saccade, Not A Saccade, Fixation, Unknown)
         /// </summary>
         public EyeMovementType RightEyeMovementType;
     }

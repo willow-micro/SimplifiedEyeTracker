@@ -19,6 +19,12 @@ references:
   commentId: F:SimplifiedEyeTracker.EyeMovementType.Fixation
   fullName: SimplifiedEyeTracker.EyeMovementType.Fixation
   nameWithType: EyeMovementType.Fixation
+- uid: SimplifiedEyeTracker.EyeMovementType.NotASaccade
+  name: NotASaccade
+  href: api/SimplifiedEyeTracker.EyeMovementType.html#SimplifiedEyeTracker_EyeMovementType_NotASaccade
+  commentId: F:SimplifiedEyeTracker.EyeMovementType.NotASaccade
+  fullName: SimplifiedEyeTracker.EyeMovementType.NotASaccade
+  nameWithType: EyeMovementType.NotASaccade
 - uid: SimplifiedEyeTracker.EyeMovementType.Saccade
   name: Saccade
   href: api/SimplifiedEyeTracker.EyeMovementType.html#SimplifiedEyeTracker_EyeMovementType_Saccade
@@ -37,18 +43,18 @@ references:
   commentId: T:SimplifiedEyeTracker.EyeTracker
   fullName: SimplifiedEyeTracker.EyeTracker
   nameWithType: EyeTracker
-- uid: SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
-  name: EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32)
-  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_
-  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
-  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String, System.Double, System.Double, SimplifiedEyeTracker.VelocityCalcType, System.Int32)
-  nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32)
-- uid: SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
-  name: EyeTracker(Double, Double, VelocityCalcType, Int32)
-  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_
-  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32)
-  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(System.Double, System.Double, SimplifiedEyeTracker.VelocityCalcType, System.Int32)
-  nameWithType: EyeTracker.EyeTracker(Double, Double, VelocityCalcType, Int32)
+- uid: SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32,System.Int32)
+  name: EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32, Int32)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_SimplifiedEyeTracker_EyeTrackerIdentification_System_String_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_System_Int32_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(SimplifiedEyeTracker.EyeTrackerIdentification,System.String,System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32,System.Int32)
+  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(SimplifiedEyeTracker.EyeTrackerIdentification, System.String, System.Double, System.Double, SimplifiedEyeTracker.VelocityCalcType, System.Int32, System.Int32)
+  nameWithType: EyeTracker.EyeTracker(EyeTrackerIdentification, String, Double, Double, VelocityCalcType, Int32, Int32)
+- uid: SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32,System.Int32)
+  name: EyeTracker(Double, Double, VelocityCalcType, Int32, Int32)
+  href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_System_Double_System_Double_SimplifiedEyeTracker_VelocityCalcType_System_Int32_System_Int32_
+  commentId: M:SimplifiedEyeTracker.EyeTracker.#ctor(System.Double,System.Double,SimplifiedEyeTracker.VelocityCalcType,System.Int32,System.Int32)
+  fullName: SimplifiedEyeTracker.EyeTracker.EyeTracker(System.Double, System.Double, SimplifiedEyeTracker.VelocityCalcType, System.Int32, System.Int32)
+  nameWithType: EyeTracker.EyeTracker(Double, Double, VelocityCalcType, Int32, Int32)
 - uid: SimplifiedEyeTracker.EyeTracker.#ctor*
   name: EyeTracker
   href: api/SimplifiedEyeTracker.EyeTracker.html#SimplifiedEyeTracker_EyeTracker__ctor_

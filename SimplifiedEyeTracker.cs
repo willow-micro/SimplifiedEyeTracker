@@ -1,5 +1,5 @@
 ﻿// A Simple Wrapper Library for the Tobii.Research.x64.
-// Version: 0.0.3
+// Version: 0.0.4
 // Copyright (C) 2021 T.Kawamura
 
 // Default
@@ -40,7 +40,6 @@ namespace SimplifiedEyeTracker
         /// Vertical Pixel Pitch
         /// </summary>
         private readonly double verticalPixelPitch;
-
         /// <summary>
         /// Gaze angular velocity calculation type
         /// </summary>
@@ -69,6 +68,18 @@ namespace SimplifiedEyeTracker
         /// Previous System Time Stamp [us]
         /// </summary>
         private long prevSystemTimeStamp;
+        /// <summary>
+        /// [Left Eye] Not a saccade time duration in ms. For fixation detection.
+        /// </summary>
+        private int leftEyeNotASaccadeDurationMs;
+        /// <summary>
+        /// [Right Eye] Not a saccade time duration in ms. For fixation detection.
+        /// </summary>
+        private int rightEyeNotASaccadeDurationMs;
+        /// <summary>
+        /// Not a saccade time duration threshold in ms. For fixation detection.
+        /// </summary>
+        private readonly int notASaccadeDurationThresholdMs;
 
 
         /// <summary>
@@ -94,13 +105,17 @@ namespace SimplifiedEyeTracker
         /// <param name="screenWidth">Screen width in pixels. (Max value of gaze x positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
         /// <param name="screenHeight">Screen height in pixels. (Max value of gaze y positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
         /// <param name="vCalcType">Calculation type for gaze angular velocity</param>
-        /// <param name="fixationVelocityThresh">Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade</param>
+        /// <param name="fixationVelocityThresh">Angular velocity threshold [rad/s] for classifying eye movements, saccade or not a saccade</param>
+        /// <param name="fixationDurationThresh">Time duration threshold [ms] for classifying eye movements, not a saccade or fixation</param>
         /// <exception cref="ArgumentOutOfRangeException">Provided screen dimension is invalid</exception>
         /// <exception cref="InvalidOperationException">Eye tracker(s) not found</exception>
-        public EyeTracker(double screenWidth, double screenHeight, VelocityCalcType vCalcType=VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30)
+        public EyeTracker(double screenWidth, double screenHeight, VelocityCalcType vCalcType=VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30, int fixationDurationThresh = 150)
         {
             this.velocityCalcType = vCalcType;
             this.fixationAngularVelocityThreshold = fixationVelocityThresh;
+            this.leftEyeNotASaccadeDurationMs = 0;
+            this.rightEyeNotASaccadeDurationMs = 0;
+            this.notASaccadeDurationThresholdMs = fixationDurationThresh;
 
             EyeTrackerCollection eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers();
             if (screenWidth <= 0 || screenHeight <= 0)
@@ -128,13 +143,17 @@ namespace SimplifiedEyeTracker
         /// <param name="screenWidth">Screen width in pixels. (Max value of gaze x positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
         /// <param name="screenHeight">Screen height in pixels. (Max value of gaze y positions in <see cref="E:SimplifiedEyeTracker.EyeTracker.OnGazeData"/>)</param>
         /// <param name="vCalcType">Calculation type for gaze angular velocity</param>
-        /// <param name="fixationVelocityThresh">Angular velocity threshold [rad/s] for classifying eye movement, fixation or saccade</param>
+        /// <param name="fixationVelocityThresh">Angular velocity threshold [rad/s] for classifying eye movements, saccade or not a saccade</param>
+        /// <param name="fixationDurationThresh">Time duration threshold [ms] for classifying eye movements, not a saccade or fixation</param>
         /// <exception cref="ArgumentOutOfRangeException">Provided screen dimension is invalid</exception>
         /// <exception cref="InvalidOperationException">Eye Tracker(s) not found</exception>
-        public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30)
+        public EyeTracker(EyeTrackerIdentification identificationType, string identificationString, double screenWidth, double screenHeight, VelocityCalcType vCalcType = VelocityCalcType.UCSGazeVector, int fixationVelocityThresh = 30, int fixationDurationThresh = 150)
         {
             this.velocityCalcType = vCalcType;
             this.fixationAngularVelocityThreshold = fixationVelocityThresh;
+            this.leftEyeNotASaccadeDurationMs = 0;
+            this.rightEyeNotASaccadeDurationMs = 0;
+            this.notASaccadeDurationThresholdMs = fixationDurationThresh;
 
             EyeTrackerCollection eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers();
             if (screenWidth <= 0 || screenHeight <= 0)
@@ -500,7 +519,7 @@ namespace SimplifiedEyeTracker
                 return double.NaN;                   
             }
 
-            if (thetaRad == double.NaN)
+            if (double.IsNaN(thetaRad))
             {
                 return double.NaN;
             }
@@ -553,23 +572,47 @@ namespace SimplifiedEyeTracker
                 // If thresh is valid
                 leftAngularVelocity = this.CalcAngularVelocityFrom(systemTimeStampInterval, e.LeftEye.GazePoint, e.LeftEye.GazeOrigin, this.prevLeftGazePoint, this.prevLeftGazeOrigin);
                 rightAngularVelocity = this.CalcAngularVelocityFrom(systemTimeStampInterval, e.RightEye.GazePoint, e.RightEye.GazeOrigin, this.prevRightGazePoint, this.prevRightGazeOrigin);
-                if (leftAngularVelocity == double.NaN)
+                if (double.IsNaN(leftAngularVelocity))
                 {
                     isLeftValid = false;
                     leftEyeMovementType = EyeMovementType.Unknown;
                 }
                 else
                 {
-                    leftEyeMovementType = (leftAngularVelocity > this.fixationAngularVelocityThreshold) ? EyeMovementType.Saccade : EyeMovementType.Fixation;
+                    leftEyeMovementType = (leftAngularVelocity > this.fixationAngularVelocityThreshold) ? EyeMovementType.Saccade : EyeMovementType.NotASaccade;
+                    if (leftEyeMovementType == EyeMovementType.NotASaccade)
+                    {
+                        this.leftEyeNotASaccadeDurationMs += (int)(systemTimeStampInterval / 1000);
+                    }
+                    else
+                    {
+                        this.leftEyeNotASaccadeDurationMs = 0;
+                    }
+                    if (this.leftEyeNotASaccadeDurationMs >= this.notASaccadeDurationThresholdMs)
+                    {
+                        leftEyeMovementType = EyeMovementType.Fixation;
+                    }
                 }
-                if (rightAngularVelocity == double.NaN)
+                if (double.IsNaN(rightAngularVelocity))
                 {
                     isRightValid = false;
                     rightEyeMovementType = EyeMovementType.Unknown;
                 }
                 else
                 {
-                    rightEyeMovementType = (rightAngularVelocity > this.fixationAngularVelocityThreshold) ? EyeMovementType.Saccade : EyeMovementType.Fixation;
+                    rightEyeMovementType = (rightAngularVelocity > this.fixationAngularVelocityThreshold) ? EyeMovementType.Saccade : EyeMovementType.NotASaccade;
+                    if (rightEyeMovementType == EyeMovementType.NotASaccade)
+                    {
+                        this.rightEyeNotASaccadeDurationMs += (int)(systemTimeStampInterval / 1000);
+                    }
+                    else
+                    {
+                        this.rightEyeNotASaccadeDurationMs = 0;
+                    }
+                    if (this.rightEyeNotASaccadeDurationMs >= this.notASaccadeDurationThresholdMs)
+                    {
+                        rightEyeMovementType = EyeMovementType.Fixation;
+                    }
                 }
             }
             else
