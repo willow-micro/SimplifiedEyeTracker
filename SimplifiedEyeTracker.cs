@@ -521,6 +521,16 @@ namespace SimplifiedEyeTracker
         /// <param name="e">Event arguments</param>
         private void GazeDataReceived(object sender, GazeDataEventArgs e)
         {
+            if (this.prevLeftGazePoint == null || this.prevLeftGazeOrigin == null || this.prevRightGazePoint == null || this.prevRightGazeOrigin == null)
+            {
+                this.prevLeftGazePoint = e.LeftEye.GazePoint;
+                this.prevLeftGazeOrigin = e.LeftEye.GazeOrigin;
+                this.prevRightGazePoint = e.RightEye.GazePoint;
+                this.prevRightGazeOrigin = e.RightEye.GazeOrigin;
+                this.prevSystemTimeStamp = e.SystemTimeStamp;
+                return;
+            }
+
             // Time stamp inteval
             int systemTimeStampInterval = (int)(e.SystemTimeStamp - this.prevSystemTimeStamp);
             if (systemTimeStampInterval < 0)
@@ -571,7 +581,7 @@ namespace SimplifiedEyeTracker
                 rightEyeMovementType = EyeMovementType.Unknown;
             }
 
-            // If screen dimensions are not specified
+            // Data to pass
             SimplifiedGazeDataEventArgs gazeDataUsingScreenDimension = new SimplifiedGazeDataEventArgs()
             {
                 DeviceTimeStamp = e.DeviceTimeStamp,
@@ -590,6 +600,7 @@ namespace SimplifiedEyeTracker
             };
             this.OnGazeData?.Invoke(this, gazeDataUsingScreenDimension);
 
+            // Update previous gaze data
             this.prevLeftGazePoint = e.LeftEye.GazePoint;
             this.prevLeftGazeOrigin = e.LeftEye.GazeOrigin;
             this.prevRightGazePoint = e.RightEye.GazePoint;
